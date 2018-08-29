@@ -1,5 +1,5 @@
 export const loading = {
-      state: true,
+      state: false,
       reducers: {
             start() { return true },
             stop() { return false }

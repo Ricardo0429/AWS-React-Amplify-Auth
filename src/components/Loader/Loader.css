@@ -1,0 +1,134 @@
+.Loader {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	left: 50%;
+}
+.lds-blocks {
+	margin: auto;
+	animation-name: rotateThis;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	/* animation-timing-function: linear; */
+	display: flex;
+	flex-wrap: wrap;
+	width: 20px;
+	/* transform: rotate(45deg); */
+}
+
+.lds-blocks div {
+	width: 8px;
+	height: 8px;
+	background: #757575;
+	-webkit-animation: lds-blocks 2s linear infinite;
+	animation: lds-blocks 2s linear infinite;
+	margin: 1px;
+}
+
+/*////////////////////////////////*/
+/*
+.lds-blocks-1 {
+	-webkit-animation-delay:0s;
+	animation-delay:0s;
+}
+
+.lds-blocks-2 {
+	-webkit-animation-delay:0.425s;
+	animation-delay:0.425s;
+}
+
+.lds-blocks-3 {
+	-webkit-animation-delay:1.275s;
+	animation-delay:1.275s;
+}
+
+.lds-blocks-4 {
+	-webkit-animation-delay:0.85s;
+	animation-delay:0.85s;
+} */
+
+@keyframes rotateThis {
+	from { transform: rotate( 0deg );   }
+	to   { transform: rotate( 360deg ); }
+}
+
+@keyframes lds-blocks {
+	0% {
+		background: #bbb;
+	}
+	15% {
+		background: #bbb;
+	}
+	25.25% {
+		background: #757575;
+	}
+	100% {
+		background: #757575;
+	}
+}
+
+@-webkit-keyframes lds-blocks {
+	0% {
+		background: #757575;
+	}
+	5% {
+		background: #757575;
+	}
+	25.25% {
+		background: #bbbbbb;
+	}
+	100% {
+		background: #bbbbbb;
+	}
+}
+
+/*
+<div class="lds-css ng-scope">
+<div class="lds-blocks" style="100%;height:100%"><div style="left:57px;top:57px;animation-delay:0s"></div><div style="left:103px;top:57px;animation-delay:0.425s"></div><div style="left:57px;top:103px;animation-delay:1.275s"></div><div style="left:103px;top:103px;animation-delay:0.85s"></div></div>
+<style type="text/css">@keyframes lds-blocks {
+  0% {
+    background: #757575;
+  }
+  25% {
+    background: #757575;
+  }
+  25.25% {
+    background: #bbbbbb;
+  }
+  100% {
+    background: #bbbbbb;
+  }
+}
+@-webkit-keyframes lds-blocks {
+  0% {
+    background: #757575;
+  }
+  25% {
+    background: #757575;
+  }
+  25.25% {
+    background: #bbbbbb;
+  }
+  100% {
+    background: #bbbbbb;
+  }
+}
+.lds-blocks {
+  position: relative;
+}
+.lds-blocks div {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #bbbbbb;
+  -webkit-animation: lds-blocks 1.7s linear infinite;
+  animation: lds-blocks 1.7s linear infinite;
+}
+.lds-blocks {
+  width: 58px !important;
+  height: 58px !important;
+  -webkit-transform: translate(-29px, -29px) scale(0.29) translate(29px, 29px);
+  transform: translate(-29px, -29px) scale(0.29) translate(29px, 29px);
+}
+</style></div>
+*/

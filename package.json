@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@rematch/core": "1.0.0-beta.4",
+    "aws-amplify": "1.0.8",
     "react": "^16.4.2",
     "react-bootstrap": "0.32.3",
     "react-dom": "^16.4.2",
