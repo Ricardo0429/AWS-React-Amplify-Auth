@@ -22,22 +22,15 @@ export const authenticated = {
       },
       effects: (dispatch) => ({
             async isAuthenticated() {
-                  try {
-                        dispatch.loading.start();
+                  await execEffect( dispatch, async () => {
                         const session = await Auth.currentSession();
                         if (session) dispatch.authenticated.set(true);
-                        log.info(session);
-                  } catch (e) {
-                        log.error(e.message);
-                  } finally {
-                        dispatch.loading.stop();
-                  }
+                  });
             },
             async login(payload, rootState) {
                   await execEffect( dispatch, async () => {
                         const {email, password} = payload;
-                        const result = await Auth.signIn(email, password);
-                        log.info(result);
+                        await Auth.signIn(email, password);
                         dispatch.authenticated.set(true);
                   }, e => {
                          // [TODO]: Do we needt that?
@@ -45,15 +38,10 @@ export const authenticated = {
                   });
             },
             async logout () {
-                  try {
-                        dispatch.loading.start();
+                  await execEffect( dispatch, async () => {
                         await Auth.signOut();
                         dispatch.authenticated.set(false);
-                  } catch (e) {
-                        log.error(e.message);
-                  } finally {
-                        dispatch.loading.stop();
-                  }
+                  })
             }
       })
 }
