@@ -1,6 +1,18 @@
 import { log } from '../services/Log';
 import { Auth } from 'aws-amplify';
 
+const execEffect = async (dispatch, action, onError) => {
+      try {
+            dispatch.loading.start();
+            await action();
+      } catch (e) {
+            if (onError) onError(e);
+            log.error(e.message);
+      } finally {
+            dispatch.loading.stop();
+      }
+};
+
 export const authenticated = {
       state: false,
       reducers: {
@@ -9,39 +21,39 @@ export const authenticated = {
             }
       },
       effects: (dispatch) => ({
-            isAuthenticated() {
-                  const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-                  const accessToken = localStorage.getItem('access_token');
-                  const validToken = accessToken && (new Date().getTime() < expiresAt);
-                  dispatch.authenticated.set(validToken);
-            },
-            async login(payload, rootState) {
+            async isAuthenticated() {
                   try {
-                        const {email, password} = payload;
                         dispatch.loading.start();
-                        const result = await Auth.signIn(email, password);
-                        log.info(result);
-                        dispatch.authenticated.set(true);
+                        const session = await Auth.currentSession();
+                        if (session) dispatch.authenticated.set(true);
+                        log.info(session);
                   } catch (e) {
                         log.error(e.message);
                   } finally {
                         dispatch.loading.stop();
                   }
-                  // const { expiresIn, accessToken, idToken } = payload;
-                  // // Set the time that the Access Token will expire at
-                  // // [TODO]: replaced with jwt-decode ?
-                  // let expiresAt = JSON.stringify((expiresIn * 1000) + new Date().getTime());
-                  // localStorage.setItem('id_token', idToken);
-                  // localStorage.setItem('access_token', accessToken);
-                  // localStorage.setItem('expires_at', expiresAt);
-                  // dispatch.authenticated.set(true);
             },
-            logout () {
-                  localStorage.removeItem('access_token');
-                  localStorage.removeItem('id_token');
-                  localStorage.removeItem('expires_at');
-                  // navigate to the home route
-                  dispatch.authenticated.set(false);
+            async login(payload, rootState) {
+                  await execEffect( dispatch, async () => {
+                        const {email, password} = payload;
+                        const result = await Auth.signIn(email, password);
+                        log.info(result);
+                        dispatch.authenticated.set(true);
+                  }, e => {
+                         // [TODO]: Do we needt that?
+                         if (e === 'No current user') return;
+                  });
+            },
+            async logout () {
+                  try {
+                        dispatch.loading.start();
+                        await Auth.signOut();
+                        dispatch.authenticated.set(false);
+                  } catch (e) {
+                        log.error(e.message);
+                  } finally {
+                        dispatch.loading.stop();
+                  }
             }
       })
 }

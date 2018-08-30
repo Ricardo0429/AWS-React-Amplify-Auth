@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export const Component = props => (
 <div className="Notes" >
-
+      Notes
 </div>
 );
 

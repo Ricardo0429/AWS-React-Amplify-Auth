@@ -1,10 +1,10 @@
 import './Header.css';
-import React from 'react';
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
+import React, { Fragment } from 'react';
 
-export const Component = () => (
+export const Component = ({ authenticated, logout }) => (
       <div className="Header" >
             <Navbar fluid collapseOnSelect>
                   <Navbar.Header>
@@ -15,12 +15,21 @@ export const Component = () => (
                   </Navbar.Header>
                   <Navbar.Collapse>
                         <Nav pullRight>
-                              <LinkContainer to="/signup">
-                                    <NavItem>Signup</NavItem>
+                              <LinkContainer to="/auth/notes">
+                                    <NavItem>Notes</NavItem>
                               </LinkContainer>
-                              <LinkContainer to="/login">
-                                    <NavItem>Login</NavItem>
-                              </LinkContainer>
+                              { authenticated ? (
+                              <NavItem onClick={ logout }>Logout</NavItem>
+                              ) : (
+                              <Fragment>
+                                    <LinkContainer to="/unauth/signup">
+                                          <NavItem>Signup</NavItem>
+                                    </LinkContainer>
+                                    <LinkContainer to="/unauth/login">
+                                          <NavItem>Login</NavItem>
+                                    </LinkContainer>
+                              </Fragment>
+                              )}
                         </Nav>
                   </Navbar.Collapse>
             </Navbar>

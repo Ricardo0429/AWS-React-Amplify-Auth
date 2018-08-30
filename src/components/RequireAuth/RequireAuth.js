@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from "react-router-dom";
 
 export const Component = ({ authenticated,  match: { path }}) => {
-      console.log('>>>>', `${path}/notes`);
-      return authenticated ? (
-            <Redirect to='/' />
-            ) : (
-            <Switch>
+      return ! authenticated ?
+            ( <Redirect to="/unauth/login" /> ) :
+            ( <Switch>
                   <Route path={`${path}/notes`} component={Notes} />
-            </Switch>
-      );
+              </Switch>);
 };
 
 Component.propTypes = {

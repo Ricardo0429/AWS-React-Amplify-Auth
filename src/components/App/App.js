@@ -5,12 +5,11 @@ import Loader from '../Loader';
 import Header from '../Header';
 import Dimmer from '../Dimmer';
 import NotFound from "../NotFound";
-import { connect } from 'react-redux';
 import RequireAuth from '../RequireAuth';
 import { Route, Switch } from "react-router-dom";
 import RequireNotAuth from '../RequireNotAuth';
 
-export const App = ({ loading, authenticated }) => (
+export const App = ({ loading }) => (
       <div className="App container">
             { loading && (
                   <div>
@@ -21,17 +20,11 @@ export const App = ({ loading, authenticated }) => (
             <Header />
             <Switch>
                   <Route path="/" exact component={Home} />
-                  <Route path="auth" render={() => {
-                        console.log('>>>> AUTH');
-                        return <RequireAuth />
-                        }} />
-                  <Route path="unauth" component={RequireNotAuth} />
+                  <Route path="/auth" component={RequireAuth} />
+                  <Route path="/unauth" component={RequireNotAuth} />
                   <Route component={NotFound} />
             </Switch>
       </div>
 );
 
-export default connect(
-      ({ loading }) => ({ loading }),
-      ({ authenticated }) => ({ authenticated })
-)(App);
+export default App;

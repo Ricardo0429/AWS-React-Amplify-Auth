@@ -1,4 +1,4 @@
-import Component from './RequireAuth';
+import Component from './RequireAuthContainer';
 
 export default Component;
 

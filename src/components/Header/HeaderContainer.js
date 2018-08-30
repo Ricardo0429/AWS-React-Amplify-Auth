@@ -4,12 +4,19 @@ import Component from './Header';
 
 export class Container extends React.Component {
 
-render() {
-return (
-<Component { ...this.props } />
-);
-}
+      render() {
+            const { logout, authenticated } = this.props;
+            return (
+                  <Component
+                        logout={logout}
+                        authenticated={authenticated}
+                  />
+            );
+      }
 };
 
-export default connect( null, null )( Container );
+export default connect(
+      ({ authenticated }) => ({ authenticated }),
+      ({ authenticated: { logout }}) => ({ logout })
+)( Container );
 
