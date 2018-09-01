@@ -27,7 +27,6 @@ export class SignUpContainer extends React.Component {
       handleSubmitConfirmation = async event => {
             event.preventDefault();
             const { email, password, confirmationCode } = this.state;
-            debugger;
             this.props.confirmSignUp({ email, password, confirmationCode });
       }
 
