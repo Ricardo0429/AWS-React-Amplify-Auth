@@ -33,7 +33,7 @@ export  class Container extends React.Component {
             // localStorage.setItem('expires_at', expiresAt);
             // dispatpassword} = this.state;
             evt.preventDefault();
-            dispatch.authenticated.login({ email, password });
+            dispatch.auth.login({ email, password });
       }
 
       render() {

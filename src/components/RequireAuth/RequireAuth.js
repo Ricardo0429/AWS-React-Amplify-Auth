@@ -3,8 +3,8 @@ import Notes from '../Notes';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from "react-router-dom";
 
-export const Component = ({ authenticated,  match: { path }}) => {
-      return ! authenticated ?
+export const Component = ({ loggedIn,  match: { path }}) => {
+      return ! loggedIn ?
             ( <Redirect to="/unauth/login" /> ) :
             ( <Switch>
                   <Route path={`${path}/notes`} component={Notes} />
@@ -12,11 +12,11 @@ export const Component = ({ authenticated,  match: { path }}) => {
 };
 
 Component.propTypes = {
-      authenticated: PropTypes.bool
+      loggedIn: PropTypes.bool
 };
 
 Component.defaultProps = {
-      authenticated: false
+      loggedIn: false
 };
 
 export default Component;

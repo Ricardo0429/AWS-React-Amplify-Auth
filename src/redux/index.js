@@ -1,4 +1,18 @@
+import { log } from '../services/Log';
+import { auth } from './auth';
 import { loading } from './loading';
-import { authenticated } from './authenticated';
+import { dispatch } from '../store';
 
-export default { authenticated, loading };
+export const execEffect = async (action, onError) => {
+      try {
+            dispatch.loading.start();
+            await action();
+      } catch (e) {
+            if (onError) onError(e);
+            log.error(e);
+      } finally {
+            dispatch.loading.stop();
+      }
+};
+
+export default { auth, loading };

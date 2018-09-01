@@ -1,5 +1,4 @@
 import React from "react";
-import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
 import Component from './App';
 // [TODO]: Review why this is necessary to use withRouter
@@ -19,7 +18,7 @@ export class AppContainer extends React.Component {
 
 const Connected = connect(
       ({ loading }) => ({ loading}),
-      ({ authenticated: { isAuthenticated }}) => ({ isAuthenticated })
+      ({ auth: { isAuthenticated }}) => ({ isAuthenticated })
 )(AppContainer);
 
 export default withRouter(Connected);

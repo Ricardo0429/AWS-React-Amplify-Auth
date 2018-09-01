@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Component from './Signup';
+import Component from './SignUp';
 
-describe( '(Component) Signup', () => {
+describe( '(Component) SignUp', () => {
 let wrapper, props;
 
 beforeEach(() => {
@@ -10,8 +10,8 @@ props = {};
 wrapper = shallow( <Component { ...props } />);
 });
 
-test( 'Displays a Signup', () => {
-expect( wrapper.find( '.Signup' ).length ).toEqual( 1 );
+test( 'Displays a SignUp', () => {
+expect( wrapper.find( '.SignUp' ).length ).toEqual( 1 );
 });
 });
 

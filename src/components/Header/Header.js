@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import React, { Fragment } from 'react';
 
-export const Component = ({ authenticated, logout }) => (
+export const Component = ({ loggedIn, logout }) => (
       <div className="Header" >
             <Navbar fluid collapseOnSelect>
                   <Navbar.Header>
@@ -18,12 +18,12 @@ export const Component = ({ authenticated, logout }) => (
                               <LinkContainer to="/auth/notes">
                                     <NavItem>Notes</NavItem>
                               </LinkContainer>
-                              { authenticated ? (
+                              { loggedIn ? (
                               <NavItem onClick={ logout }>Logout</NavItem>
                               ) : (
                               <Fragment>
                                     <LinkContainer to="/unauth/signup">
-                                          <NavItem>Signup</NavItem>
+                                          <NavItem>Sign up</NavItem>
                                     </LinkContainer>
                                     <LinkContainer to="/unauth/login">
                                           <NavItem>Login</NavItem>
