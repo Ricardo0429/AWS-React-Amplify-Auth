@@ -11,10 +11,7 @@ export const SignUp = ({
       isSubmitting,
       handleSubmit,
       handleChange
-}) => {
-      console.log('ERRORS', errors);
-      console.log('TOUCHED', touched);
-      return (
+}) => (
       <div className="SignUp" >
             <form onSubmit={handleSubmit}>
                   <FormGroup controlId="email" bsSize="large">
@@ -64,7 +61,7 @@ export const SignUp = ({
                   </Button>
             </form>
       </div>
-)};
+);
 
 SignUp.propTypes = { };
 
