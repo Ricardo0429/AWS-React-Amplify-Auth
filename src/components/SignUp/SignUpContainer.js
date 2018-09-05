@@ -1,7 +1,9 @@
 import React from 'react';
 import SignUp from './SignUp';
 import { connect } from 'react-redux';
+import validationSchema from './validationSchema';
 import SignUpConfirmation from './SignUpConfirmation';
+import { Formik } from 'formik';
 
 export class SignUpContainer extends React.Component {
 
@@ -17,25 +19,22 @@ export class SignUpContainer extends React.Component {
             this.setState({[ id ]: value });
       }
 
-      handleSubmit = async evt => {
-            evt.preventDefault();
-            const { email, password } = this.state;
-            await this.props.signUp({ email, password });
-            this.setState({ awaitingConfirmation: true  });
+      onSubmit = async values => {
+            const { email, password } = values;
+            console.log('>>>>', values);
+            // await this.props.signUp({ email, password });
+            // this.setState({ awaitingConfirmation: true  });
       }
 
-      handleSubmitConfirmation = async event => {
+      onSubmitConfirmation = async event => {
             event.preventDefault();
             const { email, password, confirmationCode } = this.state;
             this.props.confirmSignUp({ email, password, confirmationCode });
       }
 
-      validateSignUpForm() {
-            return (
-                  this.state.email.length > 0 &&
-                  this.state.password.length > 0 &&
-                  this.state.password === this.state.confirmPassword
-            );
+      validateSignUpForm = async () => {
+            const { email, password, confirmPassword } = this.state;
+            // await validate({ email, password, confirmPassword }) ;
       }
 
       validateConfirmationForm() {
@@ -46,18 +45,16 @@ export class SignUpContainer extends React.Component {
             return this.state.awaitingConfirmation ? (
                   <SignUpConfirmation
                         formIsValid={this.validateConfirmationForm()}
-                        handleSubmit={this.handleSubmitConfirmation}
+                        handleSubmit={this.onSubmitConfirmation}
                         handleChange={this.handleChange}
                         confirmationCode={this.state.confirmationCode}
                   />
             ) : (
-                  <SignUp
-                        email={this.state.email}
-                        password={this.state.password}
-                        formIsValid={this.validateSignUpForm()}
-                        handleSubmit={this.handleSubmit}
-                        handleChange={this.handleChange}
-                        confirmPassword={this.state.confirmPassword}
+                  <Formik
+                        render={props => <SignUp {...props} />}
+                        onSubmit={this.onSubmit}
+                        validationSchema={validationSchema}
+                        initialValues={{email: '', password: '', confirmPassword: ''}}
                   />
             );
       }
