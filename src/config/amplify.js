@@ -1,3 +1,4 @@
+import { cognito } from '../credentials';
 // [TODO]: Rewrite
 const config = {
       s3: {

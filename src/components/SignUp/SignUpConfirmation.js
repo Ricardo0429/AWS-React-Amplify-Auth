@@ -1,4 +1,4 @@
-import './SignUp.css';
+import './SignUpConfirmation.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
