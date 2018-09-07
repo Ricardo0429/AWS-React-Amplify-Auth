@@ -1,0 +1,30 @@
+.NewProduct .dropzone {
+      border: 2px dashed #ccc;
+      text-align: center;
+      border-radius: 50%;
+      width: 65px;
+      height: 65px;
+      background: #fff;
+      margin-right: 20px;
+      padding: 5px;
+      color: #ccc;
+      font-size: 50px;
+}
+
+.NewProduct .photos div {
+      display: flex;
+}
+
+.NewProduct .photoList img {
+      padding: 5px;
+}
+
+.NewProduct .dropzone.authorized {
+      border: 1px solid green;
+      color: green;
+}
+
+.NewProduct .dropzone.unauthorized {
+      border: 1px solid red;
+      color: red;
+}

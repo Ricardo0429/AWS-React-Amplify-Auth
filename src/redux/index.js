@@ -1,5 +1,6 @@
 import { log } from '../services/Log';
 import { auth } from './auth';
+import { alert } from './alert';
 import { loading } from './loading';
 import { dispatch } from '../store';
 
@@ -15,4 +16,4 @@ export const execEffect = async (action, onError) => {
       }
 };
 
-export default { auth, loading };
+export default { auth, loading, alert };

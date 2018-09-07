@@ -7,10 +7,15 @@ import { Formik } from 'formik';
 
 export class SignUpContainer extends React.Component {
 
+      initialValues = {
+            email: '',
+            password: '',
+            confirmPassword: ''
+      }
+
       state = {
             email: "",
             password: "",
-            confirmPassword: "",
             confirmationCode: '',
             awaitingConfirmation: false
       }
@@ -21,20 +26,14 @@ export class SignUpContainer extends React.Component {
 
       onSubmit = async values => {
             const { email, password } = values;
-            console.log('>>>>', values);
-            // await this.props.signUp({ email, password });
-            // this.setState({ awaitingConfirmation: true  });
+            await this.props.signUp({ email, password });
+            this.setState({ email, password, awaitingConfirmation: true  });
       }
 
       onSubmitConfirmation = async event => {
             event.preventDefault();
             const { email, password, confirmationCode } = this.state;
             this.props.confirmSignUp({ email, password, confirmationCode });
-      }
-
-      validateSignUpForm = async () => {
-            const { email, password, confirmPassword } = this.state;
-            // await validate({ email, password, confirmPassword }) ;
       }
 
       validateConfirmationForm() {
@@ -51,10 +50,10 @@ export class SignUpContainer extends React.Component {
                   />
             ) : (
                   <Formik
-                        render={props => <SignUp {...props} />}
                         onSubmit={this.onSubmit}
+                        component={SignUp}
+                        initialValues={this.initialValues}
                         validationSchema={validationSchema}
-                        initialValues={{email: '', password: '', confirmPassword: ''}}
                   />
             );
       }

@@ -1,4 +1,5 @@
 import "./App.css";
+import Alert from '../Alert';
 import React from "react";
 import Home from "../Home";
 import Loader from '../Loader';
@@ -8,8 +9,10 @@ import NotFound from "../NotFound";
 import RequireAuth from '../RequireAuth';
 import { Route, Switch } from "react-router-dom";
 import RequireNotAuth from '../RequireNotAuth';
+///////////////////////////////////////////////////
+import NewProduct from '../NewProduct';
 
-export const App = ({ loading }) => (
+export const App = ({ loading, alert }) => (
       <div className="App container">
             { loading && (
                   <div>
@@ -18,8 +21,11 @@ export const App = ({ loading }) => (
                   </div>
             )}
             <Header />
+            { alert && <Alert message={alert}/>}
             <Switch>
                   <Route path="/" exact component={Home} />
+            {/* [TO REMOVE]: NewProduct route */}
+                  <Route path="/newProduct" component={NewProduct} />
                   <Route path="/auth" component={RequireAuth} />
                   <Route path="/unauth" component={RequireNotAuth} />
                   <Route component={NotFound} />

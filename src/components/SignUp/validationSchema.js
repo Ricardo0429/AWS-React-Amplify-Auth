@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { passwordRegex } from '../../config';
 import {
       tooShort,
       requiredField,
@@ -10,10 +11,9 @@ import {
 export default yup.object().shape({
       email: yup
             .string()
-            .email()
+            .email(invalidFormat)
             .required(requiredField)
-            .max(255)
-            .email(invalidFormat),
+            .max(255),
       confirmPassword: yup
             .mixed()
             .required(requiredField)
@@ -23,5 +23,5 @@ export default yup.object().shape({
             .required(requiredField)
             .min(8, tooShort(8))
             .max(255)
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/, invalidPassword)
+            .matches(passwordRegex, invalidPassword)
 });

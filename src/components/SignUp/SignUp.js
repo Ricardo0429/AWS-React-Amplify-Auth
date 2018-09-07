@@ -19,7 +19,7 @@ export const SignUp = ({
                         <FormControl
                               autoFocus
                               type="email"
-                              value={values.email || ''}
+                              value={values.email}
                               onChange={handleChange}
                         />
                         {errors.email && touched.email && (
@@ -30,7 +30,7 @@ export const SignUp = ({
                         <ControlLabel>Password</ControlLabel>
                         <FormControl
                               type="password"
-                              value={values.password || ''}
+                              value={values.password}
                               onChange={handleChange}
                         />
                         {errors.password && touched.password && (
@@ -43,7 +43,7 @@ export const SignUp = ({
                         <ControlLabel>Confirm Password</ControlLabel>
                         <FormControl
                               type="password"
-                              value={values.confirmPassword || ''}
+                              value={values.confirmPassword}
                               onChange={handleChange}
                         />
                         {errors.confirmPassword && touched.confirmPassword && (
