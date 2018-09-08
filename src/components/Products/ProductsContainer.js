@@ -8,16 +8,9 @@ export class Container extends React.Component {
             this.props.getAll();
       }
 
-      handleProductClick = evt => {
-            this.props.history.push(evt.currentTarget.getAttribute("href"))
-      }
-
       render() {
             return (
-                 <Component
-                        list={this.props.products}
-                        onClick={this.handleProductClick}
-                  />
+                 <Component list={this.props.products} />
             );
       }
 };
