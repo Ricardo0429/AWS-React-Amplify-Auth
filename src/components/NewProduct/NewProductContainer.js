@@ -34,12 +34,11 @@ export class NewProductContainer extends React.Component {
       }
 
       onSubmit = async (body, { resetForm }) => {
-            this.props.products.create({ body,
-                  onSuccess: () => {
-                        resetForm();
-                        this.setState({ photos: [] });
-                  }
-            });
+            const onSuccess = () => {
+                  resetForm();
+                  this.setState({ photos: [] });
+            };
+            this.props.products.create({ body, onSuccess });
       }
 
       renderForm = props => (

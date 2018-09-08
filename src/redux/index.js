@@ -5,12 +5,10 @@ import { loading } from './loading';
 import { dispatch } from '../store';
 import { products } from './products';
 
-export const execEffect = async (action, cbs = {}) => {
-      const{ onError, onSuccess } = cbs;
+export const execEffect = async (action, onError) => {
       try {
             dispatch.loading.start();
-            const result = await action();
-            if (onSuccess) onSuccess(result);
+            return await action();
       } catch (e) {
             log.error(e);
             if (onError) onError(e);
