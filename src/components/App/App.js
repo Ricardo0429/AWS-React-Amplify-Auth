@@ -9,8 +9,6 @@ import NotFound from "../NotFound";
 import RequireAuth from '../RequireAuth';
 import { Route, Switch } from "react-router-dom";
 import RequireNotAuth from '../RequireNotAuth';
-///////////////////////////////////////////////////
-import NewProduct from '../NewProduct';
 
 export const App = ({ loading, alert: { message, type }}) => (
       <div className="App container">
@@ -26,8 +24,6 @@ export const App = ({ loading, alert: { message, type }}) => (
             )}
             <Switch>
                   <Route path="/" exact component={Home} />
-            {/* [TO REMOVE]: NewProduct route */}
-                  <Route path="/newProduct" component={NewProduct} />
                   <Route path="/auth" component={RequireAuth} />
                   <Route path="/unauth" component={RequireNotAuth} />
                   <Route component={NotFound} />

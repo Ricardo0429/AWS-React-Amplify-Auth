@@ -7,7 +7,7 @@ export const Component = ({ loggedIn,  match: { path }}) => {
       return ! loggedIn ?
             ( <Redirect to="/unauth/login" /> ) :
             ( <Switch>
-                  <Route path={`${path}/newProduct`} component={NewProduct} />
+                  <Route path={`${path}/products/new`} component={NewProduct} />
               </Switch>);
 };
 

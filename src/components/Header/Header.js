@@ -15,8 +15,8 @@ export const Component = ({ loggedIn, logout }) => (
                   </Navbar.Header>
                   <Navbar.Collapse>
                         <Nav pullRight>
-                              <LinkContainer to="/auth/products">
-                                    <NavItem>Products</NavItem>
+                              <LinkContainer to="/auth/products/new">
+                                    <NavItem>Add a Product</NavItem>
                               </LinkContainer>
                               { loggedIn ? (
                               <NavItem onClick={ logout }>Logout</NavItem>
