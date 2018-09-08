@@ -4,12 +4,26 @@ import Component from './Products';
 
 export class Container extends React.Component {
 
-render() {
-return (
-<Component { ...this.props } />
-);
-}
+      componentWillMount () {
+            this.props.getAll();
+      }
+
+      handleProductClick = evt => {
+            this.props.history.push(evt.currentTarget.getAttribute("href"))
+      }
+
+      render() {
+            return (
+                 <Component
+                        list={this.props.products}
+                        onClick={this.handleProductClick}
+                  />
+            );
+      }
 };
 
-export default connect( null, null )( Container );
+export default connect(
+      ({ products }) => ({ products }),
+      ({ products: { getAll }}) => ({ getAll })
+)( Container );
 

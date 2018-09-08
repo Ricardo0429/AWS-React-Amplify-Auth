@@ -7,10 +7,13 @@ export const products = {
       reducers: {
             add (state, payload) {
                   return state.concat(payload);
+            },
+            populate (state, payload) {
+                  return payload;
             }
       },
       effects: (dispatch) => ({
-            async create({ body, onSuccess }) {
+            create ({ body, onSuccess }) {
                   execEffect(async () => {
                         const {name, description, files} = body;
                         const file = files && files[0];
@@ -20,6 +23,12 @@ export const products = {
                         onSuccess();
                   }, e => {
                         dispatch.alert.showError(`Product "${body.name}" could not be saved`);
+                  });
+            },
+            getAll() {
+                  execEffect(async () => {
+                        const list = await API.get("notes", "/notes");
+                        dispatch.products.populate(list);
                   });
             }
       })
