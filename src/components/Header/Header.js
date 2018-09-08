@@ -15,11 +15,16 @@ export const Component = ({ loggedIn, logout }) => (
                   </Navbar.Header>
                   <Navbar.Collapse>
                         <Nav pullRight>
-                              <LinkContainer to="/auth/products/new">
-                                    <NavItem>Add a Product</NavItem>
-                              </LinkContainer>
                               { loggedIn ? (
-                              <NavItem onClick={ logout }>Logout</NavItem>
+                              <Fragment>
+                                    <LinkContainer to="/auth/products">
+                                          <NavItem>My Products</NavItem>
+                                    </LinkContainer>
+                                    <LinkContainer to="/auth/products/new">
+                                          <NavItem>Add a Product</NavItem>
+                                    </LinkContainer>
+                                    <NavItem onClick={ logout }>Logout</NavItem>
+                              </Fragment>
                               ) : (
                               <Fragment>
                                     <LinkContainer to="/unauth/signup">
