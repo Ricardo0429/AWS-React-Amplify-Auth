@@ -51,7 +51,7 @@ Component.propTypes = {
 Component.defaultProps = {
       email: '',
       password: '',
-      validateForm: () => null
+      formIsvalid: false
 };
 
 export default Component;

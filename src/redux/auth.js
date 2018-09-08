@@ -38,10 +38,10 @@ export const auth = {
                         const { email, password } = payload;
                         await Auth.signIn(email, password);
                         dispatch.auth.set(true);
-                  }, e => {
+                  }, { onError : e => {
                          // [TODO]: Do we needt that?
                          if (e === 'No current user') return;
-                  });
+                  }});
             },
 
             async logout () {

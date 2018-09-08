@@ -3,9 +3,9 @@ import React from 'react';
 import { Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-export const Component = ({ message }) => (
+export const Component = ({ message, type }) => (
       <div className="Alert" >
-            <Alert bsStyle="warning">{ message }</Alert>
+            <Alert bsStyle={ type }>{ message }</Alert>
       </div>
 );
 

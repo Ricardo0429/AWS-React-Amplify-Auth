@@ -20,6 +20,16 @@ export const NewProduct = ({
 }) => (
       <div className="NewProduct">
             <form onSubmit={handleSubmit}>
+                  <FormGroup controlId="name">
+                        <ControlLabel>Name</ControlLabel>
+                        <FormControl
+                              value={values.name}
+                              onChange={handleChange}
+                        />
+                        {errors.name && touched.name && (
+                              <div className="input-error">{errors.name}</div>
+                        )}
+                  </FormGroup>
                   <FormGroup controlId="description">
                         <ControlLabel>Description</ControlLabel>
                         <FormControl

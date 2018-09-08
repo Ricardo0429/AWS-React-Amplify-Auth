@@ -1,7 +1,8 @@
 export const alert = {
-      state: false,
+      state: {},
       reducers: {
             silence() { return false },
-            display(state, message) { return message }
+            showError(state, message) { return { type: 'danger', message }},
+            showSuccess(state, message) { return { type: 'success', message }}
       }
 }

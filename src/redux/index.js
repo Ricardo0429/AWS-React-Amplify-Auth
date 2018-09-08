@@ -3,17 +3,20 @@ import { auth } from './auth';
 import { alert } from './alert';
 import { loading } from './loading';
 import { dispatch } from '../store';
+import { products } from './products';
 
-export const execEffect = async (action, onError) => {
+export const execEffect = async (action, cbs = {}) => {
+      const{ onError, onSuccess } = cbs;
       try {
             dispatch.loading.start();
-            await action();
+            const result = await action();
+            if (onSuccess) onSuccess(result);
       } catch (e) {
-            if (onError) onError(e);
             log.error(e);
+            if (onError) onError(e);
       } finally {
             dispatch.loading.stop();
       }
 };
 
-export default { auth, loading, alert };
+export default { auth, loading, alert, products };

@@ -10,7 +10,7 @@ export class NewProductContainer extends React.Component {
 
       state = { photos: [] }
 
-      intialValues = { description: '', files: null }
+      intialValues = { description: '', name: '', files: null }
 
       onDropRejected = files => {
             let alert;
@@ -24,7 +24,7 @@ export class NewProductContainer extends React.Component {
                   alert = fileTooLarge(maxPhotoSize);
                   break;
             }
-            this.props.alert.display(alert);
+            this.props.alert.showError(alert);
       }
 
       onDropAccepted =(setFieldValue, files) => {
@@ -33,8 +33,13 @@ export class NewProductContainer extends React.Component {
             this.setState({ photos: this.state.photos.concat(photos) });
       }
 
-      onSubmit = values => {
-            console.log('VALUES >>', values);
+      onSubmit = async (body, { resetForm }) => {
+            this.props.products.create({ body,
+                  onSuccess: () => {
+                        resetForm();
+                        this.setState({ photos: [] });
+                  }
+            });
       }
 
       renderForm = props => (
@@ -58,5 +63,8 @@ export class NewProductContainer extends React.Component {
       }
 };
 
-export default connect(null, ({ alert }) => ({ alert }))(NewProductContainer);
+export default connect( null,
+      ({ alert, products }) =>
+      ({ products, alert })
+)(NewProductContainer);
 

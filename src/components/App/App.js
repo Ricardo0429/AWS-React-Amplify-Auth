@@ -12,7 +12,7 @@ import RequireNotAuth from '../RequireNotAuth';
 ///////////////////////////////////////////////////
 import NewProduct from '../NewProduct';
 
-export const App = ({ loading, alert }) => (
+export const App = ({ loading, alert: { message, type }}) => (
       <div className="App container">
             { loading && (
                   <div>
@@ -21,7 +21,9 @@ export const App = ({ loading, alert }) => (
                   </div>
             )}
             <Header />
-            { alert && <Alert message={alert}/>}
+            { message && (
+                  <Alert message={message} type={type}/>
+            )}
             <Switch>
                   <Route path="/" exact component={Home} />
             {/* [TO REMOVE]: NewProduct route */}
