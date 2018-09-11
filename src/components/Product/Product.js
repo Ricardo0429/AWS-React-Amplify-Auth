@@ -1,14 +1,85 @@
 import './Product.css';
 import React from 'react';
+import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
+import { allowedFileTypes, maxFileSize, filePreviewDim } from '../../config';
+import { Glyphicon, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
-export const Component = props => (
-<div className="Product" >
-
-</div>
+export const Product = ({
+            dirty,
+            errors,
+            values,
+            onDrop,
+            filepath,
+            touched,
+            filename,
+            isSubmitting,
+            handleSubmit,
+            handleChange,
+            onDropRejected,
+            onDropAccepted,
+}) => (
+      <div className="Product">
+            <form onSubmit={handleSubmit}>
+                  <FormGroup controlId="name">
+                        <ControlLabel>Name</ControlLabel>
+                        <FormControl
+                              value={values.name}
+                              onChange={handleChange}
+                        />
+                        {errors.name && touched.name && (
+                              <div className="input-error">{errors.name}</div>
+                        )}
+                  </FormGroup>
+                  <FormGroup controlId="description">
+                        <ControlLabel>Description</ControlLabel>
+                        <FormControl
+                              value={values.description}
+                              onChange={handleChange}
+                              componentClass="textarea"
+                        />
+                        {errors.description && touched.description && (
+                              <div className="input-error">{errors.description}</div>
+                        )}
+                  </FormGroup>
+                  <FormGroup controlId="file" className="photo">
+                        <ControlLabel>Photo</ControlLabel>
+                        <div>
+                              <Dropzone
+                                    accept={ allowedFileTypes.join( ',' ) }
+                                    onDrop={onDrop}
+                                    maxSize={ maxFileSize }
+                                    className="dropzone"
+                                    onDropRejected={onDropRejected}
+                                    rejectClassName="unauthorized"
+                                    acceptClassName="authorized"
+                                    onDropAccepted={onDropAccepted}>
+                                    <Glyphicon glyph="upload" title="Click or Drop"/>
+                              </Dropzone>
+                              <div className="file">
+                                    <img
+                                          alt={filename}
+                                          src={filepath}
+                                          key={filename}
+                                          width={filePreviewDim}
+                                          height={filePreviewDim}
+                                    />
+                              </div>
+                        </div>
+                  </FormGroup>
+                  <Button
+                        block
+                        type="submit"
+                        bsSize="large"
+                        bsStyle="primary"
+                        disabled={! dirty || isSubmitting}>
+                        Save
+                  </Button>
+            </form>
+      </div>
 );
 
-Component.propTypes = { };
+Product.propTypes = { };
 
-export default Component;
+export default Product;
 

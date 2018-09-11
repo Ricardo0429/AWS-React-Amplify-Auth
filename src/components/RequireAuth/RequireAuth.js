@@ -2,15 +2,14 @@ import React from 'react';
 import Product from '../Product';
 import Products from '../Products';
 import PropTypes from 'prop-types';
-import NewProduct from '../NewProduct';
 import { Route, Switch, Redirect } from "react-router-dom";
 
 export const Component = ({ loggedIn,  match: { path }}) => {
       return ! loggedIn ?
             ( <Redirect to="/unauth/login" /> ) :
             ( <Switch>
-                  <Route path={`${path}/products/new`} component={NewProduct} />
-                  <Route path={`${path}/products/:id`} component={Product} />
+                  <Route path={`${path}/product/:id`} component={Product} />
+                  <Route path={`${path}/product/`} component={Product} />
                   <Route path={`${path}/products`} component={Products} />
               </Switch>);
 };

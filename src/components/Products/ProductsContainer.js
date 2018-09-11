@@ -10,7 +10,7 @@ export class Container extends React.Component {
 
       render() {
             return (
-                 <Component list={this.props.products} />
+                 <Component list={this.props.products.all} />
             );
       }
 };

@@ -2,7 +2,7 @@ export const alert = {
       state: {},
       reducers: {
             silence() { return false },
-            showError(state, message) { return { type: 'danger', message }},
-            showSuccess(state, message) { return { type: 'success', message }}
+            error(state, message) { return { type: 'danger', message }},
+            success(state, message) { return { type: 'success', message }}
       }
 }

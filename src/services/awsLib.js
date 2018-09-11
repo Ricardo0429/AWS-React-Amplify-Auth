@@ -6,4 +6,8 @@ export const s3Upload = async file => {
             contentType: file.type
       });
       return key;
-}
+};
+
+export const s3Delete = async filename => {
+      await Storage.vault.remove(filename);
+};

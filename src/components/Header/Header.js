@@ -20,7 +20,7 @@ export const Component = ({ loggedIn, logout }) => (
                                     <LinkContainer to="/auth/products">
                                           <NavItem>My Products</NavItem>
                                     </LinkContainer>
-                                    <LinkContainer to="/auth/products/new">
+                                    <LinkContainer to="/auth/product/">
                                           <NavItem>Add a Product</NavItem>
                                     </LinkContainer>
                                     <NavItem onClick={ logout }>Logout</NavItem>

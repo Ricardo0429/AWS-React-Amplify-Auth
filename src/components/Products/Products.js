@@ -1,7 +1,6 @@
 import './Products.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 
@@ -14,7 +13,7 @@ export const Component = ({ list, handleProductClick }) => (
                         key={item.noteId}
                         header={item.name}
                         onClick={handleProductClick}>
-                        <Link to={`/products/${item.noteId}`}>
+                        <Link to={`/auth/product/${item.noteId}`}>
                               {"Created: " + new Date(item.createdAt).toLocaleString()}
                         </Link>
                   </ListGroupItem>
