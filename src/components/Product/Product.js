@@ -13,6 +13,7 @@ export const Product = ({
             filepath,
             touched,
             filename,
+            editMode,
             isSubmitting,
             handleDelete,
             handleSubmit,
@@ -57,6 +58,7 @@ export const Product = ({
                                     onDropAccepted={onDropAccepted}>
                                     <Glyphicon glyph="upload" title="Click or Drop"/>
                               </Dropzone>
+                              {filepath &&
                               <div className="file">
                                     <img
                                           alt={filename}
@@ -65,7 +67,7 @@ export const Product = ({
                                           width={filePreviewDim}
                                           height={filePreviewDim}
                                     />
-                              </div>
+                              </div>}
                         </div>
                   </FormGroup>
                   <Button
@@ -76,6 +78,7 @@ export const Product = ({
                         disabled={! dirty || isSubmitting}>
                         Save
                   </Button>
+                  {editMode &&
                   <Button
                         block
                         bsSize="large"
@@ -84,6 +87,7 @@ export const Product = ({
                         disabled={isSubmitting}>
                         Delete
                   </Button>
+                  }
             </form>
       </div>
 );

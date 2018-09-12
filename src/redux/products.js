@@ -7,9 +7,17 @@ export const products = {
       reducers: {
             add: (state, payload) => ({...state, all: state.all.concat(payload)}),
             select: (state, payload) => ({...state, selected: payload}),
+            remove: (state, id) => ({...state, all: state.all.filter(e => e.noteId !== id)}),
             populate: (state, payload) => ({...state, all: payload}),
       },
       effects: (dispatch) => ({
+
+            getAll() {
+                  execEffect(async () => {
+                        const list = await API.get("notes", "/notes");
+                        dispatch.products.populate(list);
+                  });
+            },
 
             getOne(id, { products: { all }}) {
                   execEffect(async () => {
@@ -45,10 +53,13 @@ export const products = {
                   });
             },
 
-            getAll() {
+            delete ({ id, filename }) {
                   execEffect(async () => {
-                        const list = await API.get("notes", "/notes");
-                        dispatch.products.populate(list);
+                        await API.del('notes', `/notes/${id}`);
+                        if (filename) await s3Delete(filename);
+                        dispatch.products.remove(id);
+                  }, () => {
+                        dispatch.alert.error(`Product could not be deleted`);
                   });
             }
       })

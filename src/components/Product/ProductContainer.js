@@ -31,6 +31,11 @@ export class ProductContainer extends React.Component {
             this.setState({ filename, filepath });
       }
 
+      handleDelete = () => {
+            const { filename } = this.state
+            dispatch.products.delete({ id: this.id, filename });
+      }
+
       onDropRejected = ([file]) => {
             let sizeError = {}, typeError = {};
             const { type, size } = file;
@@ -62,8 +67,9 @@ export class ProductContainer extends React.Component {
       renderForm = props => (
             <Product {...props}
                   filepath={this.state.filepath}
-                  filename={this.state.filename}
                   onDrop={dispatch.alert.silence}
+                  filename={this.state.filename}
+                  editMode={this.editMode}
                   handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
                   onDropAccepted={this.onDropAccepted.bind(this, props.setFieldValue)}
