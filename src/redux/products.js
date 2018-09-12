@@ -30,7 +30,7 @@ export const products = {
                         const attachment = file ? await s3Upload(file) : null;
                         await API.put('notes', `/notes/${id}`, { body: { name, description, attachment }});
                         if (existingFile) await s3Delete(existingFile);
-                  }, e => {
+                  }, () => {
                         dispatch.alert.error(`Product "${body.name}" could not be saved`);
                   });
             },

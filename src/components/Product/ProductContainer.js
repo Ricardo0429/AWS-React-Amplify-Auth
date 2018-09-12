@@ -1,6 +1,7 @@
 import React from 'react';
 import Product from './Product';
 import { Formik } from 'formik';
+import { isEqual } from 'lodash';
 import { connect } from 'react-redux';
 import { dispatch } from '../../store';
 import validationSchema from './validationSchema';
@@ -24,23 +25,22 @@ export class ProductContainer extends React.Component {
 
       componentWillReceiveProps (nextProps) {
             const { selected } = nextProps.products;
-            if (! selected) return;
+            if (isEqual(selected, this.props.products.selected)) return;
             const { filename, filepath } = selected;
-            console.log('>>>>', filepath);
             this.setState({ filename, filepath });
       }
 
       onDropRejected = ([file]) => {
-            let ms;
+            let m;
             const { type, size } = file;
             if (! allowedFileTypes.includes( type )) {
-                  ms = fIleTypeError(allowedFileTypes.join(', '));
+                  m = fIleTypeError(allowedFileTypes.join(', '));
             } else if (maxFileSize < size) {
-                  ms = fileTooLarge(maxFileSize);
+                  m = fileTooLarge(maxFileSize);
             } else {
-                  ms = unexpectedError;
+                  m = unexpectedError;
             }
-            dispatch.alert.error(ms);
+            dispatch.alert.error(m);
       }
 
       onDropAccepted =(setFieldValue, [file]) => {
@@ -50,7 +50,7 @@ export class ProductContainer extends React.Component {
             this.setState({ filename, filepath, existingFile });
       }
 
-      onSubmit = async body => {
+      onSubmit = body => {
             const { editMode, id } = this;
             const { existingFile } = this.state;
             const arg = editMode ? { body, id, existingFile } : body;
