@@ -14,6 +14,7 @@ export const Product = ({
             touched,
             filename,
             isSubmitting,
+            handleDelete,
             handleSubmit,
             handleChange,
             onDropRejected,
@@ -74,6 +75,14 @@ export const Product = ({
                         bsStyle="primary"
                         disabled={! dirty || isSubmitting}>
                         Save
+                  </Button>
+                  <Button
+                        block
+                        bsSize="large"
+                        bsStyle="danger"
+                        onClick={handleDelete}
+                        disabled={isSubmitting}>
+                        Delete
                   </Button>
             </form>
       </div>

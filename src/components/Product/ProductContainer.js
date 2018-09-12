@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { isEqual } from 'lodash';
 import { connect } from 'react-redux';
 import { dispatch } from '../../store';
+import { mySwitch } from '../../libs/mySwitch';
 import validationSchema from './validationSchema';
 import { allowedFileTypes, maxFileSize } from '../../config';
 import { fIleTypeError, fileTooLarge, unexpectedError } from '../../config/messages';
@@ -31,16 +32,16 @@ export class ProductContainer extends React.Component {
       }
 
       onDropRejected = ([file]) => {
-            let m;
+            let sizeError = {}, typeError = {};
             const { type, size } = file;
-            if (! allowedFileTypes.includes( type )) {
-                  m = fIleTypeError(allowedFileTypes.join(', '));
-            } else if (maxFileSize < size) {
-                  m = fileTooLarge(maxFileSize);
-            } else {
-                  m = unexpectedError;
-            }
-            dispatch.alert.error(m);
+            // if size too large
+            sizeError.case = maxFileSize < size;
+            sizeError.then = () => fileTooLarge(maxFileSize);
+            // if file type not allowed
+            typeError.case = ! allowedFileTypes.includes( type );
+            typeError.then = () => fIleTypeError(allowedFileTypes.join(', '));
+            const message = mySwitch([ sizeError, typeError ]);
+            dispatch.alert.error(message || unexpectedError );
       }
 
       onDropAccepted =(setFieldValue, [file]) => {
@@ -63,6 +64,7 @@ export class ProductContainer extends React.Component {
                   filepath={this.state.filepath}
                   filename={this.state.filename}
                   onDrop={dispatch.alert.silence}
+                  handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
                   onDropAccepted={this.onDropAccepted.bind(this, props.setFieldValue)}
             />
