@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { isEqual } from 'lodash';
 import { connect } from 'react-redux';
 import { dispatch } from '../../store';
-import { mySwitch } from '../../libs/mySwitch';
+import { switchCase } from '../../libs/switchCase';
 import validationSchema from './validationSchema';
 import { allowedFileTypes, maxFileSize } from '../../config';
 import { fIleTypeError, fileTooLarge, unexpectedError } from '../../config/messages';
@@ -45,7 +45,7 @@ export class ProductContainer extends React.Component {
             // if file type not allowed
             typeError.case = ! allowedFileTypes.includes( type );
             typeError.then = () => fIleTypeError(allowedFileTypes.join(', '));
-            const message = mySwitch([ sizeError, typeError ]);
+            const message = switchCase([ sizeError, typeError ]);
             dispatch.alert.error(message || unexpectedError );
       }
 
@@ -64,7 +64,7 @@ export class ProductContainer extends React.Component {
             dispatch.products[action](arg);
       }
 
-      renderForm = props => (
+      renderForm = ({...props, setFieldValue}) => (
             <Product {...props}
                   filepath={this.state.filepath}
                   onDrop={dispatch.alert.silence}
@@ -72,7 +72,7 @@ export class ProductContainer extends React.Component {
                   editMode={this.editMode}
                   handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
-                  onDropAccepted={this.onDropAccepted.bind(this, props.setFieldValue)}
+                  onDropAccepted={this.onDropAccepted.bind(this, setFieldValue)}
             />
       )
 

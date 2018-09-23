@@ -50,7 +50,7 @@ export const Product = ({
                               <Dropzone
                                     accept={ allowedFileTypes.join( ',' ) }
                                     onDrop={onDrop}
-                                    maxSize={ maxFileSize }
+                                    maxSize={maxFileSize}
                                     className="dropzone"
                                     onDropRejected={onDropRejected}
                                     rejectClassName="unauthorized"

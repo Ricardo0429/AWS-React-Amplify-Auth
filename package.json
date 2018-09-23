@@ -21,6 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "aws s3 sync build/ s3://react-redux-aws-amplify-boilerplate --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E1M8YG6CJ4ZWH2 --paths /*"
   }
 }

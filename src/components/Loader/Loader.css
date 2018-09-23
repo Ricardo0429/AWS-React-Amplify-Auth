@@ -9,7 +9,7 @@
 	animation-name: rotateThis;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+	/* animation-timing-function: linear; */
 	display: flex;
 	flex-wrap: wrap;
 	width: 20px;
