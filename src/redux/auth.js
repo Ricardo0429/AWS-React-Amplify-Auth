@@ -1,5 +1,8 @@
-import { Auth } from 'aws-amplify';
-import { execEffect } from './index';
+import {Auth} from 'aws-amplify';
+import routes from '../config/routes';
+import * as ms from '../config/messages';
+import history from '../history';
+import {execEffect} from './index';
 
 const initialState = { validated: false };
 
@@ -22,6 +25,7 @@ export const auth = {
                   await execEffect(async () => {
                         const {email: username, password} = payload;
                         await Auth.signUp({ username, password });
+                        payload.onSuccess();
                   });
             },
 
@@ -38,16 +42,29 @@ export const auth = {
                         const { email, password } = payload;
                         await Auth.signIn(email, password);
                         dispatch.auth.set(true);
-                  }, { onError : e => {
-                         // [TODO]: Do we needt that?
-                         if (e === 'No current user') return;
-                  }});
+                  }, e => dispatch.alert.error(e.message));
             },
 
             async logout () {
                   await execEffect(async () => {
                         await Auth.signOut();
                         dispatch.auth.set(false);
+                  });
+            },
+
+            async forgotPassword ({email, onSuccess}) {
+                  await execEffect(async () => {
+                        await Auth.forgotPassword(email);
+                        onSuccess();
+                  }, e => dispatch.alert.error(e.message));
+            },
+
+            async resetPassword ({ email, confirmationCode, newPassword }) {
+                  await execEffect(async () => {
+                        await Auth.forgotPasswordSubmit(email, confirmationCode, newPassword);
+                        history.push(routes.login);
+                  }, e => {
+                        dispatch.alert.error(e.message);
                   });
             }
       })

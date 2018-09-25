@@ -26,8 +26,8 @@ export class SignUpContainer extends React.Component {
 
       onSubmit = async values => {
             const { email, password } = values;
-            await this.props.signUp({ email, password });
-            this.setState({ email, password, awaitingConfirmation: true  });
+            const onSuccess = this.setState({ email, password, awaitingConfirmation: true  });
+            await this.props.signUp({ email, password, onSuccess});
       }
 
       onSubmitConfirmation = async event => {

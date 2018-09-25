@@ -17,7 +17,7 @@ export class AppContainer extends React.Component {
 }
 
 const Connected = connect(
-      ({ loading, alert }) => ({ loading, alert }),
+      ({ loading }) => ({ loading }),
       ({ auth: { isAuthenticated }}) => ({ isAuthenticated })
 )(AppContainer);
 

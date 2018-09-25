@@ -1,17 +1,19 @@
 import React from 'react';
 import Login from '../Login';
+import routes from '../../config/routes';
 import SignUp from '../SignUp';
 import PropTypes from 'prop-types';
-import { Route, Switch, Redirect } from "react-router-dom";
+import ForgotPassword from '../ForgotPassword';
+import {Route, Switch, Redirect} from "react-router-dom";
 
 export const Component = ({ loggedIn, match: { path }}) => {
       return loggedIn ? (
             <Redirect to='/' />
             ) : (
             <Switch>
-                  <Route path={`${path}/signup`} component={SignUp} />
-                  <Route path={`${path}/signup`} component={SignUp} />
-                  <Route path={`${path}/login`} component={Login} />
+                  <Route path={routes.login} component={Login} />
+                  <Route path={routes.signup} component={SignUp} />
+                  <Route path={routes.forgotPassword} component={ForgotPassword} />
             </Switch>
       );
 };

@@ -1,5 +1,7 @@
 import './Login.css';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import routes from '../../config/routes';
 import PropTypes from 'prop-types';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
@@ -10,7 +12,7 @@ export const Component = ({
       handleSubmit,
       handleChange,
 }) => (
-      <div className="Login">
+      <div className="Login simple-form">
             <form onSubmit={handleSubmit}>
                   <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>
@@ -36,6 +38,11 @@ export const Component = ({
                         type="submit">
                         Login
                   </Button>
+                  <Link
+                        to={routes.forgotPassword}
+                        className="pull-right small">
+                        Forgot password
+                  </Link>
             </form>
       </div>
 );

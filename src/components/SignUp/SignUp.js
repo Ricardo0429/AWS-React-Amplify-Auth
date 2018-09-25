@@ -12,7 +12,7 @@ export const SignUp = ({
       handleSubmit,
       handleChange
 }) => (
-      <div className="SignUp" >
+      <div className="SignUp simple-form" >
             <form onSubmit={handleSubmit}>
                   <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>

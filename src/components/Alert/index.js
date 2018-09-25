@@ -1,4 +1,4 @@
-import Component from './Alert';
+import Component from './AlertContainer';
 
 export default Component;
 

@@ -25,13 +25,6 @@ export  class Container extends React.Component {
 
       handleSubmit = evt => {
             const {email, password} = this.state;
-            // // Set the time that the Access Token will expire at
-            // // [TODO]: replaced with jwt-decode ?
-            // let expiresAt = JSON.stringify((expiresIn * 1000) + new Date().getTime());
-            // localStorage.setItem('id_token', idToken);
-            // localStorage.setItem('access_token', accessToken);
-            // localStorage.setItem('expires_at', expiresAt);
-            // dispatpassword} = this.state;
             evt.preventDefault();
             dispatch.auth.login({ email, password });
       }

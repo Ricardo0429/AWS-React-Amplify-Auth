@@ -3,16 +3,14 @@ import {passwordRegex} from '../../config';
 import {tooShort, requiredField, invalidFormat, doesNotMatch, invalidPassword } from '../../config/messages';
 
 export default yup.object().shape({
-      email: yup
-            .string()
-            .email(invalidFormat)
-            .required(requiredField)
-            .max(255),
-      confirmPassword: yup
+      confirmationCode: yup
+            .number()
+            .required(requiredField),
+      confirmNewPassword: yup
             .mixed()
             .required(requiredField)
-            .oneOf([ yup.ref('password') ], doesNotMatch('password')),
-      password: yup
+            .oneOf([ yup.ref('newPassword') ], doesNotMatch('password')),
+      newPassword: yup
             .string()
             .required(requiredField)
             .min(8, tooShort(8))

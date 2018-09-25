@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import React, { Fragment } from 'react';
+import routes from '../../config/routes';
 
 export const Component = ({ loggedIn, logout }) => (
       <div className="Header" >
             <Navbar fluid collapseOnSelect>
                   <Navbar.Header>
                         <Navbar.Brand>
-                              <Link to="/">Scratch</Link>
+                              <Link to={routes.home}>Scratch</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                   </Navbar.Header>
@@ -17,7 +18,7 @@ export const Component = ({ loggedIn, logout }) => (
                         <Nav pullRight>
                               { loggedIn ? (
                               <Fragment>
-                                    <LinkContainer to="/auth/products">
+                                    <LinkContainer to={routes.products}>
                                           <NavItem>My Products</NavItem>
                                     </LinkContainer>
                                     <LinkContainer to="/auth/product/">
@@ -27,10 +28,10 @@ export const Component = ({ loggedIn, logout }) => (
                               </Fragment>
                               ) : (
                               <Fragment>
-                                    <LinkContainer to="/unauth/signup">
+                                    <LinkContainer to={routes.signup}>
                                           <NavItem>Sign up</NavItem>
                                     </LinkContainer>
-                                    <LinkContainer to="/unauth/login">
+                                    <LinkContainer to={routes.login}>
                                           <NavItem>Login</NavItem>
                                     </LinkContainer>
                               </Fragment>

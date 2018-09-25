@@ -15,13 +15,13 @@ export const Component = ({
       handleChange,
       confirmationCode
 }) => (
-      <div className="SignUpConfirmation" >
+      <div className="SignUpConfirmation simple-form" >
             <form onSubmit={handleSubmit}>
                   <FormGroup controlId="confirmationCode" bsSize="large">
                         <ControlLabel>Confirmation Code</ControlLabel>
                         <FormControl
                               autoFocus
-                              type="tel"
+                              type="number"
                               value={confirmationCode}
                               onChange={handleChange}
                         />
@@ -33,8 +33,9 @@ export const Component = ({
                         block
                         bsSize="large"
                         disabled={! formIsValid}
-                        type="submit"
-                  >Verify</Button>
+                        type="submit">
+                        Verify
+                  </Button>
             </form>
       </div>
 );

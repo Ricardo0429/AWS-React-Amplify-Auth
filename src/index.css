@@ -29,3 +29,22 @@ input[type=file] {
 .input-error:before {
   content: '*';
 }
+
+.small {
+  font-size: 12px;
+}
+
+.medium {
+  font-size: 14px;
+}
+
+@media all and (min-width: 480px) {
+  .simple-form {
+        padding: 60px 0;
+  }
+
+  .simple-form form {
+        margin: 0 auto;
+        max-width: 320px;
+  }
+}
