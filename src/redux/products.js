@@ -1,6 +1,6 @@
-import { execEffect } from './index';
-import { API, Storage } from "aws-amplify";
-import { s3Upload, s3Delete } from "../libs/awsLib";
+import {execEffect} from './index';
+import {API, Storage} from "aws-amplify";
+import {s3Upload, s3Delete} from "../libs/awsLib";
 
 export const products = {
       state: {all: [], selected: null},
