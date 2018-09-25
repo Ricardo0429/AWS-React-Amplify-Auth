@@ -7,7 +7,7 @@
 /coverage
 
 # secrets
-/src/credentials.js
+credentials.js
 
 # production
 /build

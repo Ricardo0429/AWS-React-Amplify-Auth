@@ -1,5 +1,7 @@
-import { cognito } from '../credentials';
-// [TODO]: Rewrite
+import { cognito } from './credentials';
+
+const { userPoolId, appClientId } = coginto;
+
 const config = {
       s3: {
             REGION: 'us-east-1',
@@ -11,8 +13,8 @@ const config = {
       },
       cognito: {
             REGION: 'us-east-1',
-            USER_POOL_ID: 'us-east-1_dafnkxBjp',
-            APP_CLIENT_ID: '35l4j9i02kctlm54fnvg0b7eft',
+            USER_POOL_ID: userPoolId,
+            APP_CLIENT_ID: appClientId,
             IDENTITY_POOL_ID: 'us-east-1:80546e0c-6893-4e87-a7d8-4d0e9c9dab83'
       }
 };
