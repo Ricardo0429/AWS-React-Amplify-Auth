@@ -21,7 +21,7 @@ export const Product = ({
             onDropRejected,
             onDropAccepted,
 }) => (
-      <div className="Product">
+      <div className="Product simple-form">
             <form onSubmit={handleSubmit}>
                   <FormGroup controlId="name">
                         <ControlLabel>Name</ControlLabel>
@@ -56,7 +56,7 @@ export const Product = ({
                                     rejectClassName="unauthorized"
                                     acceptClassName="authorized"
                                     onDropAccepted={onDropAccepted}>
-                                    <Glyphicon glyph="upload" title="Click or Drop"/>
+                                    <Glyphicon glyph="arrow-up" title="Click or Drop"/>
                               </Dropzone>
                               {filepath &&
                               <div className="file">

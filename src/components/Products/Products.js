@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 
-export const Component = ({ list, handleProductClick }) => (
+export const Products = ({ list, handleProductClick }) => (
       <div className="Products" >
             <PageHeader>Your Products</PageHeader>
             {! list.length ?
-            <div>* No items entered yet</div> :
+            <div>No items entered yet</div> :
             <ListGroup>
                   { list.map( item => (
                   <ListGroupItem
@@ -25,7 +25,7 @@ export const Component = ({ list, handleProductClick }) => (
       </div>
 );
 
-Component.propTypes = { };
+Products.propTypes = { };
 
-export default Component;
+export default Products;
 

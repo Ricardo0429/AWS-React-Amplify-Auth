@@ -1,13 +1,13 @@
 import React from 'react';
 import Product from './Product';
-import { Formik } from 'formik';
-import { isEqual } from 'lodash';
-import { connect } from 'react-redux';
-import { dispatch } from '../../store';
-import { switchCase } from '../../libs/switchCase';
+import {Formik} from 'formik';
+import {isEqual} from 'lodash';
+import {connect} from 'react-redux';
+import {dispatch} from '../../store';
+import {switchCase} from '../../libs/switchCase';
 import validationSchema from './validationSchema';
-import { allowedFileTypes, maxFileSize } from '../../config';
-import { fIleTypeError, fileTooLarge, unexpectedError } from '../../config/messages';
+import {allowedFileTypes, maxFileSize} from '../../config';
+import {fIleTypeError, fileTooLarge, unexpectedError} from '../../config/messages';
 
 export class ProductContainer extends React.Component {
 

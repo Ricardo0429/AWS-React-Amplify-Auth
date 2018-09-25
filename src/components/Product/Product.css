@@ -1,14 +1,14 @@
 .Product .dropzone {
       border: 2px dashed #ccc;
       text-align: center;
-      border-radius: 50%;
-      width: 65px;
-      height: 65px;
+      border-radius: 30%;
+      width: 60px;
+      height: 60px;
       background: #fff;
       margin-right: 20px;
-      padding: 5px;
-      color: #aaa;
-      font-size: 50px;
+      padding: 12px;
+      color: #bbb;
+      font-size: 30px;
 }
 
 .Product .photo div {
