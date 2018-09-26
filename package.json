@@ -7,9 +7,9 @@
     "@rematch/select": "2.0.0",
     "aws-amplify": "1.0.8",
     "formik": "1.1.2",
-    "react": "^16.4.2",
+    "react": "16.5.2",
     "react-bootstrap": "0.32.3",
-    "react-dom": "^16.4.2",
+    "react-dom": "16.5.2",
     "react-dropzone": "5.0.1",
     "react-redux": "5.0.7",
     "react-router-bootstrap": "0.24.4",
@@ -25,5 +25,9 @@
     "predeploy": "yarn run build",
     "deploy": "aws s3 sync build/ s3://react-redux-aws-amplify-boilerplate --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E1M8YG6CJ4ZWH2 --paths /*"
+  },
+  "devDependencies": {
+    "enzyme": "3.6.0",
+    "enzyme-adapter-react-16": "1.5.0"
   }
 }

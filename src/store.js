@@ -1,4 +1,4 @@
-import { init } from '@rematch/core';
+import {init} from '@rematch/core';
 import models from './redux';
 import selectPlugin from '@rematch/select'
 

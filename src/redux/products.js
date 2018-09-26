@@ -20,7 +20,7 @@ export const products = {
             },
 
             getOne(id, { products: { all }}) {
-                  execEffect(async () => {
+                  execEffect(dispatch, async () => {
                         let filepath, data;
                         let item = all.find( e => e.noteId === id );
                         if (item && item.attachment) {
