@@ -8,7 +8,7 @@ import Dimmer from '../Dimmer';
 import NotFound from "../NotFound";
 import RequireAuth from '../RequireAuth';
 import {Route, Switch} from "react-router-dom";
-import RequireNotAuth from '../RequireNotAuth';
+import RequireUnauth from '../RequireUnauth';
 
 export const App = ({ loading }) => (
       <div className="App container">
@@ -23,7 +23,7 @@ export const App = ({ loading }) => (
             <Switch>
                   <Route path="/" exact component={Home} />
                   <Route path="/auth" component={RequireAuth} />
-                  <Route path="/unauth" component={RequireNotAuth} />
+                  <Route path="/unauth" component={RequireUnauth} />
                   <Route component={NotFound} />
             </Switch>
       </div>

@@ -1,8 +1,7 @@
 import React from 'react';
 import {Formik} from 'formik';
 import {connect} from 'react-redux';
-import Component from './ForgotPassword';
-import {dispatch} from '../../store';
+import ForgotPassword from './ForgotPassword';
 import validationSchema from './validationSchema';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
 
@@ -21,7 +20,7 @@ export class ForgotPasswordContainer extends React.Component {
 
       onSubmitNewPassword = ({ confirmationCode, newPassword }) => {
             const email = this.state.value;
-            dispatch.auth.resetPassword({
+            this.props.dispatch.auth.resetPassword({
                   email,
                   newPassword,
                   confirmationCode
@@ -41,7 +40,7 @@ export class ForgotPasswordContainer extends React.Component {
                         validationSchema={validationSchema}
                   />
             ) : (
-                  <Component
+                  <ForgotPassword
                         value={this.state.value}
                         onSubmit={this.onSubmitEmail}
                         onChange={this.onChange}

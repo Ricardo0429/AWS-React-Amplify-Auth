@@ -1,8 +1,7 @@
+import App from './App';
 import React from "react";
-import { connect } from 'react-redux';
-import Component from './App';
-// [TODO]: Review why this is necessary to use withRouter
-import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 export class AppContainer extends React.Component {
 
@@ -11,9 +10,8 @@ export class AppContainer extends React.Component {
       }
 
       render () {
-            return <Component {...this.props} />
+            return <App {...this.props} />
       }
-
 }
 
 const Connected = connect(

@@ -1,65 +1,42 @@
 import './ForgotPasswordSubmit.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Form} from 'formik';
-import {Button, HelpBlock, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
+import {Form, Field} from 'formik';
+import {Button, HelpBlock} from "react-bootstrap";
+import CustomInputComponent from '../CustomInputComponent';
 
-export const Component = ({
-      dirty,
-      errors,
-      values,
-      touched,
-      formIsValid,
-      isSubmitting,
-      handleSubmit,
-      handleChange
-}) => (
+export const Component = ({ dirty, isSubmitting }) => (
       <div className="ForgotPasswordSubmit simple-form" >
-            <form onSubmit={handleSubmit}>
-                  <FormGroup controlId="confirmationCode" bsSize="large">
-                        <ControlLabel>Confirmation Code</ControlLabel>
-                        <FormControl
-                              autoFocus
-                              type="text"
-                              value={values.code}
-                              onChange={handleChange}
-                        />
-                        {errors.confirmationCode && touched.confirmationCode && (
-                              <div className="input-error">{errors.confirmationCode}</div>
-                        )}
+            <Form>
+                  <Field
+                        autoFocus
+                        type="text"
+                        name="confirmationCode"
+                        component={CustomInputComponent}>
                         <HelpBlock>
                               Please enter the confirmation code we sent to your email address.
                         </HelpBlock>
-                  </FormGroup>
-                  <FormGroup controlId="newPassword" bsSize="large">
-                        <ControlLabel>New Password</ControlLabel>
-                        <FormControl
-                              type="password"
-                              value={values.newPassword}
-                              onChange={handleChange}
-                        />
-                        {errors.newPassword && touched.newPassword && (
-                              <div className="input-error">{errors.newPassword}</div>
-                        )}
-                  </FormGroup>
-                  <FormGroup controlId="confirmNewPassword" bsSize="large">
-                        <ControlLabel>Confirm New Password</ControlLabel>
-                        <FormControl
-                              type="password"
-                              value={values.confirmNewPassword}
-                              onChange={handleChange}
-                        />
-                        {errors.confirmNewPassword && touched.confirmNewPassword && (
-                              <div className="input-error">{errors.confirmNewPassword}</div>
-                        )}
-                  </FormGroup>
+                  </Field>
+                  <Field
+                        type="password"
+                        name="newPassword"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
+                  <Field
+                        type="password"
+                        name="confirmNewPassword"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
                   <Button
                         block
+                        type="submit"
                         bsSize="large"
-                        type="submit">
+                        disabled={! dirty || isSubmitting}>
                         Submit
                   </Button>
-            </form>
+            </Form>
       </div>
 );
 
