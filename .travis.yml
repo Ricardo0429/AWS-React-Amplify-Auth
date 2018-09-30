@@ -1,4 +1,23 @@
 language: node_js
 node_js: 8.9.4
 install: yarn
-script: yarn build
+script:
+      # - yarn test
+      - yarn build
+
+# install yarn
+# sudo: required
+# before_install:
+#       - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+#       - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+#       - sudo apt-get update -qq
+#       - sudo apt-get install -y -qq yarn=1.2.1
+# cache:
+#       yarn: true
+
+notifications:
+      email:
+            recipients:
+                  - bstenm@yahoo.com
+            on_success: change
+            on_failure: change

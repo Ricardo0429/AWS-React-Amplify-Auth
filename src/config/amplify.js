@@ -1,4 +1,6 @@
-import { cognito, s3, apiGateway } from './credentials';
+import {aws} from './index';
+
+const { cognito, apiGateway, s3 } = aws;
 
 export default {
       Auth: {
