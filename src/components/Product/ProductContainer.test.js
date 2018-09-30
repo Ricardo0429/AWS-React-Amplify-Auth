@@ -1,19 +1,18 @@
 import React from 'react';
-import Container from './ProductContainer';
+import Product from '../Product';
 import { shallow } from 'enzyme';
-import Component from '../Product';
 import { ProductContainer } from './ProductContainer';
 
 describe( '(Container) Product', () => {
-let wrapper, props;
+      let wrapper, props;
 
-beforeEach(() => {
-props = { match: { params: { id: 23 }}};
-wrapper = shallow( <ProductContainer { ...props } />);
-});
+      beforeEach(() => {
+            props = { match: { params: { id: 23 }}};
+            wrapper = shallow( <ProductContainer { ...props } />);
+      });
 
-test( 'Displays a Product component', () => {
-expect( wrapper.find( Component ).length ).toEqual( 1 );
-});
+      test( 'Displays a Product component', () => {
+            expect( wrapper.find(Product).length ).toEqual( 1 );
+      });
 });
 

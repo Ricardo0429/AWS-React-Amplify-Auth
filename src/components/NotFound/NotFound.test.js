@@ -3,15 +3,14 @@ import { shallow } from 'enzyme';
 import Component from './NotFound';
 
 describe( '(Component) NotFound', () => {
-let wrapper, props;
+      let wrapper;
 
-beforeEach(() => {
-props = {};
-wrapper = shallow( <Component { ...props } />);
-});
+      beforeEach(() => {
+            wrapper = shallow( <Component />);
+      });
 
-test( 'Displays a NotFound', () => {
-expect( wrapper.find( '.NotFound' ).length ).toEqual( 1 );
-});
+      test( 'Displays a NotFound', () => {
+            expect( wrapper.find( '.NotFound' ).length ).toEqual( 1 );
+      });
 });
 

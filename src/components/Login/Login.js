@@ -2,39 +2,32 @@ import './Login.css';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import routes from '../../config/routes';
+import {Button} from "react-bootstrap";
 import PropTypes from 'prop-types';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {Form, Field} from 'formik';
+import CustomInputComponent from '../CustomInputComponent';
 
-export const Component = ({
-      email,
-      password,
-      formIsvalid,
-      handleSubmit,
-      handleChange,
-}) => (
+export const Component = ({ dirty, isSubmitting }) => (
       <div className="Login simple-form">
-            <form onSubmit={handleSubmit}>
-                  <FormGroup controlId="email" bsSize="large">
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl
-                              autoFocus
-                              type="email"
-                              value={email}
-                              onChange={handleChange}
-                        />
-                  </FormGroup>
-                  <FormGroup controlId="password" bsSize="large">
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl
-                              value={password}
-                              onChange={handleChange}
-                              type="password"
-                        />
-                  </FormGroup>
+            <Form>
+                  <Field
+                        autoFocus
+                        type="email"
+                        name="email"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
+                  <Field
+                        autoFocus
+                        type="password"
+                        name="password"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
                   <Button
                         block
                         bsSize="large"
-                        disabled={! formIsvalid}
+                        disabled={! dirty || isSubmitting}
                         type="submit">
                         Login
                   </Button>
@@ -43,22 +36,19 @@ export const Component = ({
                         className="pull-right small">
                         Forgot password
                   </Link>
-            </form>
+            </Form>
       </div>
 );
 
 Component.propTypes = {
-      email: PropTypes.string,
-      password: PropTypes.string,
-      formIsvalid: PropTypes.bool,
-      handleSubmit: PropTypes.func.isRequired,
-      handleChange: PropTypes.func.isRequired
+      dirty: PropTypes.bool,
+      isSubmitting: PropTypes.bool,
 };
 
 Component.defaultProps = {
       email: '',
       password: '',
-      formIsvalid: false
+      formIsValid: false
 };
 
 export default Component;
