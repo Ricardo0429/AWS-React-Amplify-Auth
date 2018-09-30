@@ -3,15 +3,15 @@ import { shallow } from 'enzyme';
 import Component from './Header';
 
 describe( '(Component) Header', () => {
-let wrapper, props;
+      let wrapper, props;
 
-beforeEach(() => {
-props = {};
-wrapper = shallow( <Component { ...props } />);
-});
+      beforeEach(() => {
+            props = {};
+            wrapper = shallow( <Component { ...props } />);
+      });
 
-test( 'Displays a Header', () => {
-expect( wrapper.find( '.Header' ).length ).toEqual( 1 );
-});
+      it( 'Displays a Header', () => {
+            expect( wrapper.find( '.Header' ).length ).toEqual( 1 );
+      });
 });
 

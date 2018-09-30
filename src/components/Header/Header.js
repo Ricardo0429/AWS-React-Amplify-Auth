@@ -1,11 +1,11 @@
 import './Header.css';
-import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
-import React, { Fragment } from 'react';
+import {Link} from "react-router-dom";
 import routes from '../../config/routes';
+import {LinkContainer} from "react-router-bootstrap";
+import React, {Fragment} from 'react';
+import {Navbar, Nav, NavItem} from "react-bootstrap";
 
-export const Component = ({ loggedIn, logout }) => (
+export const Header = ({ loggedIn, logout }) => (
       <div className="Header" >
             <Navbar fluid collapseOnSelect>
                   <Navbar.Header>
@@ -42,5 +42,5 @@ export const Component = ({ loggedIn, logout }) => (
       </div>
 );
 
-export default Component;
+export default Header;
 
