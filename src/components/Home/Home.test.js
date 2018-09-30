@@ -3,15 +3,14 @@ import { shallow } from 'enzyme';
 import Component from './Home';
 
 describe( '(Component) Home', () => {
-let wrapper, props;
+      let wrapper;
 
-beforeEach(() => {
-props = {};
-wrapper = shallow( <Component { ...props } />);
-});
+      beforeEach(() => {
+            wrapper = shallow( <Component />);
+      });
 
-test( 'Displays a Home', () => {
-expect( wrapper.find( '.Home' ).length ).toEqual( 1 );
-});
+      test( 'Displays a Home', () => {
+            expect( wrapper.find( '.Home' ).length ).toEqual( 1 );
+      });
 });
 

@@ -1,12 +1,10 @@
 // [TODO]: Add Formik and yup validation
 import "./Login.css";
 import React from "react";
-/////////////////////
-// import { connect } from 'react-redux';
-import { dispatch } from '../../store';
-import Component from './Login';
+import Login from './Login';
+import { connect } from 'react-redux';
 
-export  class Container extends React.Component {
+export  class LoginContainer extends React.Component {
 
       constructor(props) {
             super(props);
@@ -14,7 +12,10 @@ export  class Container extends React.Component {
       }
 
       validateForm() {
-            return this.state.email.length > 0 && this.state.password.length > 0;
+            return (
+                  this.state.email.length > 0 &&
+                  this.state.password.length > 0
+            );
       }
 
       handleChange = evt => {
@@ -26,20 +27,22 @@ export  class Container extends React.Component {
       handleSubmit = evt => {
             const {email, password} = this.state;
             evt.preventDefault();
-            dispatch.auth.login({ email, password });
+            this.props.login({ email, password });
       }
 
       render() {
-            const { email, password } = this.state;
-            return <Component
-                  email={email}
-                  password={password}
-                  formIsvalid={this.validateForm()}
+            return <Login
+                  email={this.state.email}
+                  password={this.state.password}
+                  formIsValid={this.validateForm()}
                   handleSubmit={this.handleSubmit}
                   handleChange={this.handleChange}
             />;
       }
 }
 
-export default Container;
+export default connect(
+      null,
+      ({ auth: login }) => ({ login })
+)(LoginContainer);
 

@@ -1,4 +1,4 @@
-import Component from './HomeContainer';
+import Component from './Home';
 
 export default Component;
 

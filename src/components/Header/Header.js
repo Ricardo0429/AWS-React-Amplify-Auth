@@ -21,7 +21,7 @@ export const Header = ({ loggedIn, logout }) => (
                                     <LinkContainer to={routes.products}>
                                           <NavItem>My Products</NavItem>
                                     </LinkContainer>
-                                    <LinkContainer to="/auth/product/">
+                                    <LinkContainer to={routes.product}>
                                           <NavItem>Add a Product</NavItem>
                                     </LinkContainer>
                                     <NavItem onClick={ logout }>Logout</NavItem>
