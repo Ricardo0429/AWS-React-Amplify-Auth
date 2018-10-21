@@ -53,7 +53,7 @@ export const products = {
                   });
             },
 
-            delete ({ id, filename }) {
+            remove ({ id, filename }) {
                   execEffect(async () => {
                         await API.del('notes', `/notes/${id}`);
                         if (filename) await s3Delete(filename);

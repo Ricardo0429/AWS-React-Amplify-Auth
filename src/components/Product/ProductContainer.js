@@ -3,7 +3,6 @@ import Product from './Product';
 import {Formik} from 'formik';
 import {isEqual} from 'lodash';
 import {connect} from 'react-redux';
-import {dispatch} from '../../store';
 import {switchCase} from '../../libs/switchCase';
 import validationSchema from './validationSchema';
 import {allowedFileTypes, maxFileSize} from '../../config';
@@ -13,14 +12,12 @@ export class ProductContainer extends React.Component {
 
       state = { photos: [] }
 
-      intialValues = { description: '', name: '', filename: '', filepath: '' }
+      initialValues = { description: '', name: '', filename: '', filepath: '' }
 
       componentWillMount () {
-            const {id} = this.props.match.params;
+            const { id } = this.props.match.params;
             if (id) {
-                  dispatch.products.getOne(id);
-                  this.editMode = true;
-                  this.id = id;
+                  this.props.dispatch.products.getOne(id);
             }
       }
 
@@ -32,8 +29,9 @@ export class ProductContainer extends React.Component {
       }
 
       handleDelete = () => {
-            const { filename } = this.state
-            dispatch.products.delete({ id: this.id, filename });
+            const { id } = this.props.match.params;
+            const { filename } = this.state;
+            this.props.dispatch.products.remove({ id, filename });
       }
 
       onDropRejected = ([file]) => {
@@ -46,7 +44,7 @@ export class ProductContainer extends React.Component {
             typeError.case = ! allowedFileTypes.includes( type );
             typeError.then = () => fIleTypeError(allowedFileTypes.join(', '));
             const message = switchCase([ sizeError, typeError ]);
-            dispatch.alert.error(message || unexpectedError );
+            this.props.dispatch.alert.error(message || unexpectedError );
       }
 
       onDropAccepted =(setFieldValue, [file]) => {
@@ -57,19 +55,19 @@ export class ProductContainer extends React.Component {
       }
 
       onSubmit = body => {
-            const { editMode, id } = this;
+            const { id } = this.props.match.params;
             const { existingFile } = this.state;
-            const arg = editMode ? { body, id, existingFile } : body;
-            const action = editMode ? 'update' : 'create';
-            dispatch.products[action](arg);
+            const arg = id ? { body, id, existingFile } : body;
+            const action = id ? 'update' : 'create';
+            this.props.dispatch.products[action](arg);
       }
 
       renderForm = ({...props, setFieldValue}) => (
             <Product {...props}
                   filepath={this.state.filepath}
-                  onDrop={dispatch.alert.silence}
+                  onDrop={this.props.dispatch.alert.silence}
                   filename={this.state.filename}
-                  editMode={this.editMode}
+                  editMode={!! this.props.match.params.id}
                   handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
                   onDropAccepted={this.onDropAccepted.bind(this, setFieldValue)}
@@ -81,7 +79,7 @@ export class ProductContainer extends React.Component {
                   <Formik
                         render={this.renderForm}
                         onSubmit={this.onSubmit}
-                        initialValues={this.intialValues}
+                        initialValues={this.initialValues}
                         validationSchema={validationSchema}
                   />
             );

@@ -6,7 +6,6 @@ import Amplify from 'aws-amplify';
 import amplifyConfig from './config/amplify';
 import history from './history';
 import {Router} from "react-router-dom";
-import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import store from './store';
 
@@ -19,4 +18,3 @@ ReactDOM.render(
             </Router>
       </Provider>
       , document.getElementById('root'));
-registerServiceWorker();

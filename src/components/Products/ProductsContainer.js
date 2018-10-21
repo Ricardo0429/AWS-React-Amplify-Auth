@@ -1,16 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Component from './Products';
+import Products from './Products';
+import {connect} from 'react-redux';
 
-export class Container extends React.Component {
+export class ProductsContainer extends React.Component {
 
-      componentWillMount () {
+      componentWillMount() {
             this.props.getAll();
       }
 
       render() {
             return (
-                 <Component list={this.props.products.all} />
+                 <Products list={this.props.products.all} />
             );
       }
 };
@@ -18,5 +18,5 @@ export class Container extends React.Component {
 export default connect(
       ({ products }) => ({ products }),
       ({ products: { getAll }}) => ({ getAll })
-)( Container );
+)(ProductsContainer);
 

@@ -11,6 +11,7 @@ export const auth = {
                   return { ...state, loggedIn: payload };
             }
       },
+
       effects: (dispatch) => ({
             async isAuthenticated() {
                   await execEffect(dispatch, async () => {

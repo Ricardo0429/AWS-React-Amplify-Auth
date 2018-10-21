@@ -2,48 +2,38 @@ import './Product.css';
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
-import { allowedFileTypes, maxFileSize, filePreviewDim } from '../../config';
-import { Glyphicon, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {Form, Field} from 'formik';
+import CustomInputComponent from '../CustomInputComponent';
+import {Glyphicon, Button, FormGroup, ControlLabel} from "react-bootstrap";
+import {allowedFileTypes, maxFileSize, filePreviewDim} from '../../config';
 
 export const Product = ({
             dirty,
-            errors,
-            values,
             onDrop,
             filepath,
-            touched,
             filename,
             editMode,
             isSubmitting,
             handleDelete,
-            handleSubmit,
-            handleChange,
             onDropRejected,
-            onDropAccepted,
+            onDropAccepted
 }) => (
       <div className="Product simple-form">
-            <form onSubmit={handleSubmit}>
-                  <FormGroup controlId="name">
-                        <ControlLabel>Name</ControlLabel>
-                        <FormControl
-                              value={values.name}
-                              onChange={handleChange}
-                        />
-                        {errors.name && touched.name && (
-                              <div className="input-error">{errors.name}</div>
-                        )}
-                  </FormGroup>
-                  <FormGroup controlId="description">
-                        <ControlLabel>Description</ControlLabel>
-                        <FormControl
-                              value={values.description}
-                              onChange={handleChange}
-                              componentClass="textarea"
-                        />
-                        {errors.description && touched.description && (
-                              <div className="input-error">{errors.description}</div>
-                        )}
-                  </FormGroup>
+            <Form>
+                  <Field
+                        autoFocus
+                        type="text"
+                        name="name"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                        placeholder="Name"
+                  />
+                  <Field
+                        type="textarea"
+                        name="description"
+                        component={CustomInputComponent}
+                        placeholder="Description"
+                  />
                   <FormGroup controlId="file" className="photo">
                         <ControlLabel>Photo</ControlLabel>
                         <div>
@@ -88,7 +78,7 @@ export const Product = ({
                         Delete
                   </Button>
                   }
-            </form>
+            </Form>
       </div>
 );
 
