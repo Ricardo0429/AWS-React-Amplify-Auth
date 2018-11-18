@@ -1,20 +1,22 @@
-import './ForgotPasswordSubmit.css';
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Form, Field} from 'formik';
-import {Button, HelpBlock} from "react-bootstrap";
-import CustomInputComponent from '../CustomInputComponent';
+import "./ForgotPasswordSubmit.css";
+import React from "react";
+import PropTypes from "prop-types";
+import { Form, Field } from "formik";
+import { Button, HelpBlock } from "react-bootstrap";
+import CustomInputComponent from "../CustomInputComponent";
 
-export const Component = ({ dirty, isSubmitting }) => (
-      <div className="ForgotPasswordSubmit simple-form" >
+const ForgotPasswordSubmit = ({ dirty, isSubmitting }) => (
+      <div className="ForgotPasswordSubmit simple-form">
             <Form>
                   <Field
                         autoFocus
                         type="text"
                         name="confirmationCode"
-                        component={CustomInputComponent}>
+                        component={CustomInputComponent}
+                  >
                         <HelpBlock>
-                              Please enter the confirmation code we sent to your email address.
+                              Please enter the confirmation code we sent to your
+                              email address.
                         </HelpBlock>
                   </Field>
                   <Field
@@ -33,14 +35,22 @@ export const Component = ({ dirty, isSubmitting }) => (
                         block
                         type="submit"
                         bsSize="large"
-                        disabled={! dirty || isSubmitting}>
+                        disabled={!dirty || isSubmitting}
+                  >
                         Submit
                   </Button>
             </Form>
       </div>
 );
 
-Component.propTypes = { };
+ForgotPasswordSubmit.propTypes = {
+      dirty: PropTypes.bool,
+      isSubmitting: PropTypes.bool
+};
 
-export default Component;
+ForgotPasswordSubmit.defaultProps = {
+      dirty: false,
+      isSubmitting: false
+};
 
+export default ForgotPasswordSubmit;

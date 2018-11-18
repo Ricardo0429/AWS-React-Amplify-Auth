@@ -1,40 +1,44 @@
-import React from 'react';
-import SignUp from './SignUp';
-import { connect } from 'react-redux';
-import validationSchema from './validationSchema';
-import SignUpConfirmation from './SignUpConfirmation';
-import { Formik } from 'formik';
+import React from "react";
+import { connect } from "react-redux";
+import { Formik } from "formik";
+import SignUp from "./SignUp";
+import validationSchema from "./validationSchema";
+import PropTypes from 'prop-types';
+import SignUpConfirmation from "./SignUpConfirmation";
 
 export class SignUpContainer extends React.Component {
-
       initialValues = {
-            email: '',
-            password: '',
-            confirmPassword: ''
-      }
+            email: "",
+            password: "",
+            confirmPassword: ""
+      };
 
       state = {
             email: "",
             password: "",
-            confirmationCode: '',
+            confirmationCode: "",
             awaitingConfirmation: false
-      }
+      };
 
-      handleChange = ({ target: { id, value }}) => {
-            this.setState({[ id ]: value });
-      }
+      handleChange = ({ target: { id, value } }) => {
+            this.setState({ [id]: value });
+      };
 
       onSubmit = async values => {
             const { email, password } = values;
-            const onSuccess = this.setState({ email, password, awaitingConfirmation: true  });
-            await this.props.signUp({ email, password, onSuccess});
-      }
+            const onSuccess = this.setState({
+                  email,
+                  password,
+                  awaitingConfirmation: true
+            });
+            await this.props.signUp({ email, password, onSuccess });
+      };
 
       onSubmitConfirmation = async event => {
             event.preventDefault();
             const { email, password, confirmationCode } = this.state;
             this.props.confirmSignUp({ email, password, confirmationCode });
-      }
+      };
 
       validateConfirmationForm() {
             return this.state.confirmationCode.length > 0;
@@ -57,10 +61,14 @@ export class SignUpContainer extends React.Component {
                   />
             );
       }
+}
+
+SignUpContainer.propTypes = {
+      signUp: PropTypes.func.isRequired,
+      confirmSignUp: PropTypes.func.isRequired
 };
 
-export default connect(null, ({ auth:
-      { signUp, confirmSignUp }}) =>
-      ({ signUp, confirmSignUp })
+export default connect(
+      null,
+      ({ auth: { signUp, confirmSignUp } }) => ({ signUp, confirmSignUp })
 )(SignUpContainer);
-

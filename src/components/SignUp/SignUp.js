@@ -1,69 +1,54 @@
-import './SignUp.css';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import "./SignUp.css";
+import React from "react";
+import PropTypes from "prop-types";
+import { Form, Field } from "formik";
+import { Button } from "react-bootstrap";
+import CustomInputComponent from "../CustomInputComponent";
 
-export const SignUp = ({
-      dirty,
-      errors,
-      values,
-      touched,
-      isSubmitting,
-      handleSubmit,
-      handleChange
-}) => (
-      <div className="SignUp simple-form" >
-            <form onSubmit={handleSubmit}>
-                  <FormGroup controlId="email" bsSize="large">
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl
-                              autoFocus
-                              type="email"
-                              value={values.email}
-                              onChange={handleChange}
-                        />
-                        {errors.email && touched.email && (
-                              <div className="input-error">{errors.email}</div>
-                        )}
-                  </FormGroup>
-                  <FormGroup controlId="password" bsSize="large">
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl
-                              type="password"
-                              value={values.password}
-                              onChange={handleChange}
-                        />
-                        {errors.password && touched.password && (
-                              <div className="input-error">
-                                    {errors.password}
-                              </div>
-                        )}
-                  </FormGroup>
-                  <FormGroup controlId="confirmPassword" bsSize="large">
-                        <ControlLabel>Confirm Password</ControlLabel>
-                        <FormControl
-                              type="password"
-                              value={values.confirmPassword}
-                              onChange={handleChange}
-                        />
-                        {errors.confirmPassword && touched.confirmPassword && (
-                              <div className="input-error">
-                                    {errors.confirmPassword}
-                              </div>
-                        )}
-                  </FormGroup>
+const SignUp = ({ dirty, isSubmitting }) => (
+      <div className="SignUp simple-form">
+            <Form>
+                  <Field
+                        autoFocus
+                        type="email"
+                        name="email"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
+                  <Field
+                        autoFocus
+                        type="password"
+                        name="password"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
+                  <Field
+                        autoFocus
+                        type="password"
+                        name="confirmPassword"
+                        bsSize="large"
+                        component={CustomInputComponent}
+                  />
                   <Button
                         block
                         type="submit"
                         bsSize="large"
-                        disabled={!dirty || isSubmitting}>
+                        disabled={!dirty || isSubmitting}
+                  >
                         Sign up
                   </Button>
-            </form>
+            </Form>
       </div>
 );
 
-SignUp.propTypes = { };
+SignUp.defaultProps = {
+      dirty: false,
+      isSubmitting: false
+};
+
+SignUp.propTypes = {
+      dirty: PropTypes.bool,
+      isSubmitting: PropTypes.bool
+};
 
 export default SignUp;
-

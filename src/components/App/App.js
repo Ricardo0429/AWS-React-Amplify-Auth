@@ -1,18 +1,19 @@
 import "./App.css";
-import Alert from '../Alert';
+import { Route, Switch } from "react-router-dom";
 import React from "react";
+import PropTypes from "prop-types";
+import Alert from "../Alert";
 import Home from "../Home";
-import Loader from '../Loader';
-import Header from '../Header';
-import Dimmer from '../Dimmer';
+import Loader from "../Loader";
+import Header from "../Header";
+import Dimmer from "../Dimmer";
 import NotFound from "../NotFound";
-import RequireAuth from '../RequireAuth';
-import {Route, Switch} from "react-router-dom";
-import RequireUnauth from '../RequireUnauth';
+import RequireAuth from "../RequireAuth";
+import RequireUnauth from "../RequireUnauth";
 
-export const App = ({ loading }) => (
+const App = ({ loading }) => (
       <div className="App container">
-            { loading && (
+            {loading && (
                   <div>
                         <Dimmer />
                         <Loader />
@@ -28,5 +29,13 @@ export const App = ({ loading }) => (
             </Switch>
       </div>
 );
+
+App.defaultProps = {
+      loading: false
+};
+
+App.propTypes = {
+      loading: PropTypes.bool
+};
 
 export default App;

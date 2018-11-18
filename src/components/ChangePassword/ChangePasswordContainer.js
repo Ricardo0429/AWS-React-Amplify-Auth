@@ -1,15 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Component from './ChangePassword';
+import React from "react";
+import { connect } from "react-redux";
+import ChangePassword from "./ChangePassword";
 
-export class Container extends React.Component {
-
-render() {
-return (
-<Component { ...this.props } />
-);
+export class ChangePasswordContainer extends React.Component {
+      render() {
+            return <ChangePassword {...this.props} />;
+      }
 }
-};
 
-export default connect( null, null )( Container );
-
+export default connect(
+      null,
+      null
+)(ChangePasswordContainer);

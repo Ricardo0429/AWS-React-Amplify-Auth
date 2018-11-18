@@ -1,15 +1,18 @@
-import * as yup from 'yup';
-import {passwordRegex} from '../../config';
-import {tooShort, requiredField, invalidFormat, doesNotMatch, invalidPassword } from '../../config/messages';
+import * as yup from "yup";
+import { passwordRegex } from "../../config";
+import {
+      tooShort,
+      requiredField,
+      doesNotMatch,
+      invalidPassword
+} from "../../config/messages";
 
 export default yup.object().shape({
-      confirmationCode: yup
-            .number()
-            .required(requiredField),
+      confirmationCode: yup.number().required(requiredField),
       confirmNewPassword: yup
             .mixed()
             .required(requiredField)
-            .oneOf([ yup.ref('newPassword') ], doesNotMatch('password')),
+            .oneOf([yup.ref("newPassword")], doesNotMatch("password")),
       newPassword: yup
             .string()
             .required(requiredField)

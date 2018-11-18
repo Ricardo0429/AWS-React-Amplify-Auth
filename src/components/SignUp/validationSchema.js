@@ -1,6 +1,12 @@
-import * as yup from 'yup';
-import {passwordRegex} from '../../config';
-import {tooShort, requiredField, invalidFormat, doesNotMatch, invalidPassword } from '../../config/messages';
+import * as yup from "yup";
+import { passwordRegex } from "../../config";
+import {
+      tooShort,
+      requiredField,
+      invalidFormat,
+      doesNotMatch,
+      invalidPassword
+} from "../../config/messages";
 
 export default yup.object().shape({
       email: yup
@@ -11,7 +17,7 @@ export default yup.object().shape({
       confirmPassword: yup
             .mixed()
             .required(requiredField)
-            .oneOf([ yup.ref('password') ], doesNotMatch('password')),
+            .oneOf([yup.ref("password")], doesNotMatch("password")),
       password: yup
             .string()
             .required(requiredField)

@@ -1,19 +1,17 @@
-import React from 'react';
-import Container from '../ChangePasswordContainer';
-import { shallow } from 'enzyme';
-import Component from '../ChangePassword';
-import { Container } from '../ChangePasswordContainer;'
+import React from "react";
+import { shallow } from "enzyme";
+import ChangePassword from "./ChangePassword";
+import { ChangePasswordContainer } from "./ChangePasswordContainer";
 
-describe( '(Container) ChangePassword', () => {
-let wrapper, props;
+describe("(Container) ChangePassword", () => {
+      let wrapper; let props;
 
-beforeEach(() => {
-props = {};
-wrapper = shallow( <ChangePasswordContainer { ...props } />);
+      beforeEach(() => {
+            props = {};
+            wrapper = shallow(<ChangePasswordContainer {...props} />);
+      });
+
+      test("Displays a ChangePassword component", () => {
+            expect(wrapper.find(ChangePassword)).toHaveLength(1);
+      });
 });
-
-test( 'Displays a ChangePassword component', () => {
-expect( wrapper.find( Component ).length ).toEqual( 1 );
-});
-});
-

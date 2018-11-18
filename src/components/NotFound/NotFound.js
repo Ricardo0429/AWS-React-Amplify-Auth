@@ -1,5 +1,5 @@
-import './NotFound.css';
-import React from 'react';
+import "./NotFound.css";
+import React from "react";
 
 export const Component = () => (
       <div className="NotFound">
@@ -8,4 +8,3 @@ export const Component = () => (
 );
 
 export default Component;
-

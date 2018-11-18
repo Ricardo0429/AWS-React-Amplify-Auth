@@ -1,46 +1,44 @@
-import React from 'react';
-import Login from './Login';
-import {shallow} from 'enzyme';
-import {LoginContainer} from './LoginContainer';
+import React from "react";
+import { shallow } from "enzyme";
+import { Formik } from "formik";
+import Login from "./Login";
+import { LoginContainer } from "./LoginContainer";
 
-describe( '(Container) Login', () => {
-      let wrapper, props;
+describe("(Container) Login", () => {
+      let wrapper;
+      let props;
 
       beforeEach(() => {
             props = { login: jest.fn() };
-            wrapper = shallow( <LoginContainer {...props} />);
+            wrapper = shallow(<LoginContainer {...props} />);
       });
 
-      test( 'Displays a Login component', () => {
-            expect( wrapper.find(Login).length ).toEqual(1);
+      it("Displays a Login component", () => {
+            expect(wrapper.find(Formik).length).toEqual(1);
       });
 
-      //  Login prop: email + password
-      it('Passes email and password to Login  component', () => {
-            wrapper.setState({ email: 'example@email.com', password: 'Passw0rd!' });
-            expect(wrapper.find(Login).props().email).toEqual('example@email.com');
-            expect(wrapper.find(Login).props().password).toEqual('Passw0rd!');
+      // Formik prop: onSubmit
+      it("Passes a cb prop to submit the form to Formik component", () => {
+            wrapper
+                  .find(Formik)
+                  .props()
+                  .onSubmit({ email: "some@email.com", password: "pwd" });
+            const { calls } = props.login.mock;
+            expect(calls).toHaveLength(1);
+            expect(calls[0][0].email).toEqual("some@email.com");
+            expect(calls[0][0].password).toEqual("pwd");
       });
 
-      // Logon prop: formIsValid
-      it('Passes formIsValid to Logon component', () => {
-            expect(wrapper.find(Login).props().formIsValid).toEqual(false);
-            wrapper.setState({ email: 'example@email.com', password: 'Passw0rd!' });
-            expect(wrapper.find(Login).props().formIsValid).toEqual(true);
+      // Formik prop: component
+      it("Passes formIsValid to Logon component", () => {
+            expect(wrapper.find(Formik).props().component).toEqual(Login);
       });
 
-      // Login prop: handleChange
-      it('Passes a cb prop to user input to Login component', () => {
-            wrapper.find(Login).props().handleChange({ target: { id: 'email', value: 'some@email.co' }});
-            expect(wrapper.state().email).toEqual('some@email.co');
-      });
-
-      //  prop: handleSubmit
-      it('Passes a cb prop to handle the submit event to  component', () => {
-            wrapper.setState({ email: 'example@email.com', password: 'Passw0rd!' });
-            wrapper.find(Login).props().handleSubmit({ preventDefault: () => null });
-            expect(props.login.mock.calls.length).toEqual(1);
-            expect(props.login.mock.calls[0][0] ).toEqual({ email: 'example@email.com', password: 'Passw0rd!' });
+      // Formik prop: initialValues
+      it("Passes initialValues to Formik component", () => {
+            expect(wrapper.find(Formik).props().initialValues).toEqual({
+                  email: "",
+                  password: ""
+            });
       });
 });
-

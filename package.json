@@ -2,22 +2,10 @@
   "name": "notes-app-client",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@rematch/core": "1.0.0-beta.4",
-    "@rematch/select": "2.0.0",
-    "aws-amplify": "1.0.8",
-    "formik": "1.1.2",
-    "react": "16.5.2",
-    "react-bootstrap": "0.32.3",
-    "react-dom": "16.5.2",
-    "react-dropzone": "5.0.1",
-    "react-redux": "5.0.7",
-    "react-router-bootstrap": "0.24.4",
-    "react-router-dom": "4.3.1",
-    "react-scripts": "1.1.5",
-    "yup": "0.26.3"
-  },
   "scripts": {
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix",
+    "prettier": "prettier --write src/**/*.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -26,8 +14,40 @@
     "deploy": "aws s3 sync build/ s3://react-redux-aws-amplify-boilerplate --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E1M8YG6CJ4ZWH2 --paths /*"
   },
+  "dependencies": {
+    "@rematch/core": "1.0.0-beta.4",
+    "@rematch/select": "2.0.0",
+    "aws-amplify": "1.0.8",
+    "formik": "1.1.2",
+    "lodash": "4.17.11",
+    "prop-types": "15.6.2",
+    "react": "16.6.0",
+    "react-bootstrap": "0.32.3",
+    "react-dom": "16.6.0",
+    "react-dropzone": "5.0.1",
+    "react-redux": "5.0.7",
+    "react-router-bootstrap": "0.24.4",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "1.1.5",
+    "yup": "0.26.3"
+  },
   "devDependencies": {
+    "babel-eslint": "10.0.1",
     "enzyme": "3.6.0",
-    "enzyme-adapter-react-16": "1.5.0"
+    "enzyme-adapter-react-16": "1.5.0",
+    "eslint": "5.8.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-jest-enzyme": "7.0.0",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-plugin-babel": "5.2.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jest": "21.26.2",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-prettier": "3.0.0",
+    "eslint-plugin-react": "7.11.1",
+    "prettier": "1.14.3"
+  },
+  "prettier": {
+    "tabWidth": 6
   }
 }

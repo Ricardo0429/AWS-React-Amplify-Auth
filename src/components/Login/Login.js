@@ -1,13 +1,13 @@
-import './Login.css';
-import React from 'react';
-import {Link} from 'react-router-dom';
-import routes from '../../config/routes';
-import {Button} from "react-bootstrap";
-import PropTypes from 'prop-types';
-import {Form, Field} from 'formik';
-import CustomInputComponent from '../CustomInputComponent';
+import "./Login.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { Form, Field } from "formik";
+import routes from "../../config/routes";
+import CustomInputComponent from "../CustomInputComponent";
 
-export const Component = ({ dirty, isSubmitting }) => (
+const Login = ({ dirty, isSubmitting }) => (
       <div className="Login simple-form">
             <Form>
                   <Field
@@ -27,29 +27,26 @@ export const Component = ({ dirty, isSubmitting }) => (
                   <Button
                         block
                         bsSize="large"
-                        disabled={! dirty || isSubmitting}
-                        type="submit">
+                        disabled={!dirty || isSubmitting}
+                        type="submit"
+                  >
                         Login
                   </Button>
-                  <Link
-                        to={routes.forgotPassword}
-                        className="pull-right small">
+                  <Link to={routes.forgotPassword} className="pull-right small">
                         Forgot password
                   </Link>
             </Form>
       </div>
 );
 
-Component.propTypes = {
+Login.propTypes = {
       dirty: PropTypes.bool,
-      isSubmitting: PropTypes.bool,
+      isSubmitting: PropTypes.bool
 };
 
-Component.defaultProps = {
-      email: '',
-      password: '',
-      formIsValid: false
+Login.defaultProps = {
+      dirty: false,
+      isSubmitting: false
 };
 
-export default Component;
-
+export default Login;

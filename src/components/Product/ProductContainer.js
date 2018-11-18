@@ -1,27 +1,31 @@
-import React from 'react';
-import Product from './Product';
-import {Formik} from 'formik';
-import {isEqual} from 'lodash';
-import {connect} from 'react-redux';
-import {switchCase} from '../../libs/switchCase';
-import validationSchema from './validationSchema';
-import {allowedFileTypes, maxFileSize} from '../../config';
-import {fIleTypeError, fileTooLarge, unexpectedError} from '../../config/messages';
+import React from "react";
+import PropTypes from "prop-types";
+import { Formik } from "formik";
+import { isEqual } from "lodash";
+import { connect } from "react-redux";
+import Product from "./Product";
+import { switchCase } from "../../libs/switchCase";
+import validationSchema from "./validationSchema";
+import { allowedFileTypes, maxFileSize } from "../../config";
+import {
+      fIleTypeError,
+      fileTooLarge,
+      unexpectedError
+} from "../../config/messages";
 
 export class ProductContainer extends React.Component {
+      state = { filename: "", filepath: "", existingFile: "" };
 
-      state = { photos: [] }
+      initialValues = { description: "", name: "", filename: "", filepath: "" };
 
-      initialValues = { description: '', name: '', filename: '', filepath: '' }
-
-      componentWillMount () {
+      componentWillMount() {
             const { id } = this.props.match.params;
             if (id) {
                   this.props.dispatch.products.getOne(id);
             }
       }
 
-      componentWillReceiveProps (nextProps) {
+      componentWillReceiveProps(nextProps) {
             const { selected } = nextProps.products;
             if (isEqual(selected, this.props.products.selected)) return;
             const { filename, filepath } = selected;
@@ -32,47 +36,54 @@ export class ProductContainer extends React.Component {
             const { id } = this.props.match.params;
             const { filename } = this.state;
             this.props.dispatch.products.remove({ id, filename });
-      }
+      };
 
       onDropRejected = ([file]) => {
-            let sizeError = {}, typeError = {};
+            const sizeError = {};
+            const typeError = {};
             const { type, size } = file;
             // if size too large
             sizeError.case = maxFileSize < size;
             sizeError.then = () => fileTooLarge(maxFileSize);
             // if file type not allowed
-            typeError.case = ! allowedFileTypes.includes( type );
-            typeError.then = () => fIleTypeError(allowedFileTypes.join(', '));
-            const message = switchCase([ sizeError, typeError ]);
-            this.props.dispatch.alert.error(message || unexpectedError );
-      }
+            typeError.case = !allowedFileTypes.includes(type);
+            typeError.then = () => fIleTypeError(allowedFileTypes.join(", "));
+            const message = switchCase([sizeError, typeError]);
+            this.props.dispatch.alert.error(message || unexpectedError);
+      };
 
-      onDropAccepted =(setFieldValue, [file]) => {
-            setFieldValue('file', file);
+      onDropAccepted = (setFieldValue, [file]) => {
+            setFieldValue("file", file);
             const { preview: filepath, name: filename } = file;
-            const existingFile = this.state.filename;
-            this.setState({ filename, filepath, existingFile });
-      }
+            this.setState(prevState => ({
+                  filename,
+                  filepath,
+                  existingFile: prevState.filename
+            }));
+      };
 
       onSubmit = body => {
             const { id } = this.props.match.params;
             const { existingFile } = this.state;
             const arg = id ? { body, id, existingFile } : body;
-            const action = id ? 'update' : 'create';
+            const action = id ? "update" : "create";
             this.props.dispatch.products[action](arg);
-      }
+      };
 
-      renderForm = ({...props, setFieldValue}) => (
-            <Product {...props}
+      renderForm = ({ setFieldValue, ...props }) => (
+            <Product
+                  {...props}
                   filepath={this.state.filepath}
                   onDrop={this.props.dispatch.alert.silence}
                   filename={this.state.filename}
-                  editMode={!! this.props.match.params.id}
+                  editMode={!!this.props.match.params.id}
                   handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
-                  onDropAccepted={this.onDropAccepted.bind(this, setFieldValue)}
+                  onDropAccepted={ files =>
+                        this.onDropAccepted(setFieldValue, files)
+                  }
             />
-      )
+      );
 
       render() {
             return (
@@ -84,7 +95,18 @@ export class ProductContainer extends React.Component {
                   />
             );
       }
+}
+
+ProductContainer.propTypes = {
+      products: PropTypes.shape({
+            selected: PropTypes.number
+      }).isRequired,
+      dispatch: PropTypes.object.isRequired,
+      match: PropTypes.shape({
+            params: PropTypes.shape({
+                  id: PropTypes.number
+            }).isRequired
+      }).isRequired
 };
 
 export default connect(({ products }) => ({ products }))(ProductContainer);
-

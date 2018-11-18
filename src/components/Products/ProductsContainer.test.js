@@ -1,32 +1,34 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import Products from './Products';
-import {ProductsContainer} from './ProductsContainer';
+import React from "react";
+import { shallow } from "enzyme";
+import Products from "./Products";
+import { ProductsContainer } from "./ProductsContainer";
 
-describe( '(Container) Products', () => {
-      let wrapper, props;
+describe("(Container) Products", () => {
+      let wrapper; let props;
 
       beforeEach(() => {
             props = {
                   products: {
-                        all: ['product1', 'product2']
+                        all: ["product1", "product2"]
                   },
                   getAll: jest.fn()
             };
-            wrapper = shallow( <ProductsContainer { ...props } />);
+            wrapper = shallow(<ProductsContainer {...props} />);
       });
 
-      it('Gets all the products into the state', () => {
-            expect(props.getAll.mock.calls.length).toEqual(1);
+      it("Gets all the products into the state", () => {
+            expect(props.getAll.mock.calls).toHaveLength(1);
       });
 
-      it( 'Displays a Products component', () => {
-            expect( wrapper.find(Products).length).toEqual( 1 );
+      it("Displays a Products component", () => {
+            expect(wrapper.find(Products).length).toEqual(1);
       });
 
       // Products prop: list
-      it('Passes list to Products component', () => {
-            expect(wrapper.find(Products).props().list).toEqual(['product1', 'product2']);
+      it("Passes list to Products component", () => {
+            expect(wrapper.find(Products).props().list).toEqual([
+                  "product1",
+                  "product2"
+            ]);
       });
 });
-
