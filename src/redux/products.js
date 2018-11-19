@@ -13,7 +13,7 @@ export const products = {
       effects: (dispatch) => ({
 
             getAll() {
-                  execEffect(async () => {
+                  execEffect(dispatch, async () => {
                         const list = await API.get("notes", "/notes");
                         dispatch.products.populate(list);
                   });
@@ -33,7 +33,7 @@ export const products = {
             },
 
             update ({ body, id, existingFile }) {
-                  execEffect(async () => {
+                  execEffect( dispatch, async () => {
                         const { name, description, file } = body;
                         const attachment = file ? await s3Upload(file) : null;
                         await API.put('notes', `/notes/${id}`, { body: { name, description, attachment }});
@@ -44,7 +44,7 @@ export const products = {
             },
 
             create (body) {
-                  execEffect(async () => {
+                  execEffect(dispatch, async () => {
                         const {name, description, file} = body;
                         const attachment = file ? await s3Upload(file) : null;
                         await API.post('notes', '/notes', { body: { name, description, attachment }});
@@ -54,7 +54,7 @@ export const products = {
             },
 
             remove ({ id, filename }) {
-                  execEffect(async () => {
+                  execEffect(dispatch, async () => {
                         await API.del('notes', `/notes/${id}`);
                         if (filename) await s3Delete(filename);
                         dispatch.products.remove(id);

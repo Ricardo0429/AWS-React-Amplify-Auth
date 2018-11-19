@@ -1,7 +1,11 @@
-export const loading = {
+export default {
       state: false,
       reducers: {
-            start() { return true },
-            stop() { return false }
+            start() {
+                  return true;
+            },
+            stop() {
+                  return false;
+            }
       }
-}
+};

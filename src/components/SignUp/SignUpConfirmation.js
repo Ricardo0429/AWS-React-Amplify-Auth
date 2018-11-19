@@ -43,4 +43,3 @@ export const Component = ({
 Component.propTypes = { };
 
 export default Component;
-

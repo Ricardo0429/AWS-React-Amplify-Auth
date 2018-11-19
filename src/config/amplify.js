@@ -1,4 +1,4 @@
-import {aws} from './index';
+import { aws } from "./index";
 
 const { cognito, apiGateway, s3 } = aws;
 
@@ -16,11 +16,12 @@ export default {
             identityPoolId: cognito.identityPoolId
       },
       API: {
-            endpoints: [{
-                  name: 'notes',
-                  region: apiGateway.region,
-                  endpoint: apiGateway.url
-            }
-      ]}
+            endpoints: [
+                  {
+                        name: "notes",
+                        region: apiGateway.region,
+                        endpoint: apiGateway.url
+                  }
+            ]
+      }
 };
-

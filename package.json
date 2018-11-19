@@ -47,6 +47,25 @@
     "eslint-plugin-react": "7.11.1",
     "prettier": "1.14.3"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/index.js",
+      "!src/config/*.js",
+      "!src/store.js",
+      "!src/**/validationSchema.js",
+      "!src/Alert/AlertContainer.js",
+      "!src/Header/HeaderContainer.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
   "prettier": {
     "tabWidth": 6
   }

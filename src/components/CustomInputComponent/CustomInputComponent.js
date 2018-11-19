@@ -30,7 +30,7 @@ const CustomInputComponent = ({
 );
 
 CustomInputComponent.propTypes = {
-      children: PropTypes.object.isRequired,
+      children: PropTypes.object,
       type: PropTypes.string.isRequired,
       field: PropTypes.shape({
             value: PropTypes.string,

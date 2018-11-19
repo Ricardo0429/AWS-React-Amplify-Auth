@@ -99,12 +99,12 @@ export class ProductContainer extends React.Component {
 
 ProductContainer.propTypes = {
       products: PropTypes.shape({
-            selected: PropTypes.number
+            selected: PropTypes.object
       }).isRequired,
-      dispatch: PropTypes.object.isRequired,
+      dispatch: PropTypes.func.isRequired,
       match: PropTypes.shape({
             params: PropTypes.shape({
-                  id: PropTypes.number
+                  id: PropTypes.string
             }).isRequired
       }).isRequired
 };
