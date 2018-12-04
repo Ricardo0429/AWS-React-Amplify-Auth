@@ -14,6 +14,17 @@
     "deploy": "aws s3 sync build/ s3://react-redux-aws-amplify-boilerplate --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E1M8YG6CJ4ZWH2 --paths /*"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "yarn lint:write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@rematch/core": "1.0.0-beta.4",
     "@rematch/select": "2.0.0",
