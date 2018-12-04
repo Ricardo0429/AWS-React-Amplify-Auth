@@ -13,5 +13,3 @@ The backend needs to be setup on AWS:
 - [S3](https://docs.aws.amazon.com/s3/index.html#lang/en_us)
 - [DynamoDB](https://docs.aws.amazon.com/dynamodb/index.html#lang/en_us)
 - [CloudFront](https://docs.aws.amazon.com/cloudfront/index.html#lang/en_us)
-
-> yarn start
