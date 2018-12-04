@@ -1,9 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Formik } from "formik";
+import PropTypes from 'prop-types';
 import SignUp from "./SignUp";
 import validationSchema from "./validationSchema";
-import PropTypes from 'prop-types';
 import SignUpConfirmation from "./SignUpConfirmation";
 
 export class SignUpContainer extends React.Component {
@@ -68,7 +67,4 @@ SignUpContainer.propTypes = {
       confirmSignUp: PropTypes.func.isRequired
 };
 
-export default connect(
-      null,
-      ({ auth: { signUp, confirmSignUp } }) => ({ signUp, confirmSignUp })
-)(SignUpContainer);
+export default SignUpContainer;

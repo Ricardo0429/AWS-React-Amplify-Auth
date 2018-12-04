@@ -1,4 +1,7 @@
-import Component from './HeaderContainer';
+import { connect } from "react-redux";
+import Component from "./Header";
 
-export default Component;
-
+export default connect(
+      ({ auth: { loggedIn } }) => ({ loggedIn }),
+      ({ auth: { logout } }) => ({ logout })
+)(Component);

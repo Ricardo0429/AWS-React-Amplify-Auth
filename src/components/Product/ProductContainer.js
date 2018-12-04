@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Formik } from "formik";
 import { isEqual } from "lodash";
-import { connect } from "react-redux";
 import Product from "./Product";
 import { switchCase } from "../../libs/switchCase";
 import validationSchema from "./validationSchema";
@@ -79,7 +78,7 @@ export class ProductContainer extends React.Component {
                   editMode={!!this.props.match.params.id}
                   handleDelete={this.handleDelete}
                   onDropRejected={this.onDropRejected}
-                  onDropAccepted={ files =>
+                  onDropAccepted={files =>
                         this.onDropAccepted(setFieldValue, files)
                   }
             />
@@ -109,4 +108,4 @@ ProductContainer.propTypes = {
       }).isRequired
 };
 
-export default connect(({ products }) => ({ products }))(ProductContainer);
+export default ProductContainer;

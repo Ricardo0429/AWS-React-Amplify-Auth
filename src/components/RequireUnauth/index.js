@@ -1,4 +1,4 @@
-import Component from './RequireUnauthContainer';
+import { connect } from "react-redux";
+import Component from "./RequireUnauth";
 
-export default Component;
-
+export default connect(({ auth: { loggedIn } }) => ({ loggedIn }))(Component);

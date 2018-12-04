@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { Formik } from "formik";
 import Login from "./Login";
-import { LoginContainer } from "./LoginContainer";
+import LoginContainer from "./LoginContainer";
 
 describe("(Container) Login", () => {
       let wrapper;
@@ -14,7 +14,7 @@ describe("(Container) Login", () => {
       });
 
       it("Displays a Login component", () => {
-            expect(wrapper.find(Formik).length).toEqual(1);
+            expect(wrapper.find(Formik)).toHaveLength(1);
       });
 
       // Formik prop: onSubmit

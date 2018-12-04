@@ -1,4 +1,7 @@
-import Component from './SignUpContainer';
+import { connect } from "react-redux";
+import Component from "./SignUpContainer";
 
-export default Component;
-
+export default connect(
+      null,
+      ({ auth: { signUp, confirmSignUp } }) => ({ signUp, confirmSignUp })
+)(Component);

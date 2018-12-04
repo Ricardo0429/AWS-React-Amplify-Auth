@@ -1,4 +1,7 @@
-import Component from './LoginContainer';
+import { connect } from "react-redux";
+import Component from "./LoginContainer";
 
-export default Component;
-
+export default connect(
+      null,
+      ({ auth: { login } }) => ({ login })
+)(Component);

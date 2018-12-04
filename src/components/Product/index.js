@@ -1,4 +1,4 @@
-import Component from './ProductContainer';
+import { connect } from "react-redux";
+import Component from "./ProductContainer";
 
-export default Component;
-
+export default connect(({ products }) => ({ products }))(Component);

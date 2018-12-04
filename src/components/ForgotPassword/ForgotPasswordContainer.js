@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik } from "formik";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ForgotPassword from "./ForgotPassword";
 import validationSchema from "./validationSchema";
@@ -59,7 +58,4 @@ ForgotPasswordContainer.propTypes = {
       forgotPassword: PropTypes.func.isRequired
 };
 
-export default connect(
-      null,
-      ({ auth: { forgotPassword } }) => ({ forgotPassword })
-)(ForgotPasswordContainer);
+export default ForgotPasswordContainer;

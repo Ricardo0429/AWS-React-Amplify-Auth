@@ -2,7 +2,7 @@ import {execEffect} from './index';
 import {API, Storage} from "aws-amplify";
 import {s3Upload, s3Delete} from "../libs/awsLib";
 
-export const products = {
+export default {
       state: {all: [], selected: null},
       reducers: {
             add: (state, payload) => ({...state, all: state.all.concat(payload)}),

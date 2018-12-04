@@ -11,7 +11,7 @@ export const Header = ({ loggedIn, logout }) => (
             <Navbar fluid collapseOnSelect>
                   <Navbar.Header>
                         <Navbar.Brand>
-                              <Link to={routes.home}>Scratch</Link>
+                              <Link to={routes.home}>MyShop</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                   </Navbar.Header>

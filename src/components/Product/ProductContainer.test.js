@@ -16,8 +16,8 @@ describe("(Container) Product", () => {
 
       beforeEach(() => {
             props = {
-                  products: { selected: 3 },
-                  match: { params: { id: 23 } },
+                  products: { selected: { id: 23 } },
+                  match: { params: { id: "23" } },
                   dispatch: {
                         alert: {
                               error: jest.fn(),
@@ -36,7 +36,9 @@ describe("(Container) Product", () => {
 
       it("Gets the product into the state if id found", () => {
             expect(props.dispatch.products.getOne.mock.calls).toHaveLength(1);
-            expect(props.dispatch.products.getOne.mock.calls[0][0]).toEqual(23);
+            expect(props.dispatch.products.getOne.mock.calls[0][0]).toEqual(
+                  "23"
+            );
       });
 
       it("Does not try to get the product if no id found", () => {
@@ -62,7 +64,7 @@ describe("(Container) Product", () => {
                   .props()
                   .onSubmit("arg");
             expect(update.mock.calls).toHaveLength(1);
-            expect(update.mock.calls[0][0].id).toEqual(23);
+            expect(update.mock.calls[0][0].id).toEqual("23");
             expect(update.mock.calls[0][0].body).toEqual("arg");
             expect(update.mock.calls[0][0].existingFile).toEqual(
                   "existing-file.png"
@@ -146,7 +148,7 @@ describe("(Container) Product", () => {
             Form.props.handleDelete();
             expect(props.dispatch.products.remove.mock.calls).toHaveLength(1);
             expect(props.dispatch.products.remove.mock.calls[0][0].id).toEqual(
-                  23
+                  "23"
             );
             expect(
                   props.dispatch.products.remove.mock.calls[0][0].filename

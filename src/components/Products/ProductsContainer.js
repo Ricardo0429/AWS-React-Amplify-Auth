@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Products from "./Products";
 
@@ -23,10 +22,7 @@ ProductsContainer.propTypes = {
       getAll: PropTypes.func.isRequired,
       products: PropTypes.shape({
             all: PropTypes.array.isRequired
-      }),
+      })
 };
 
-export default connect(
-      ({ products }) => ({ products }),
-      ({ products: { getAll } }) => ({ getAll })
-)(ProductsContainer);
+export default ProductsContainer;

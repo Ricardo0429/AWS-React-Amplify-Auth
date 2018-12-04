@@ -1,26 +1,28 @@
 language: node_js
-node_js: 8.9.4
-install: yarn
-script:
-      - yarn test
-      - yarn build
-
-# install yarn
-sudo: required
-before_install:
-      - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-      - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      - sudo apt-get update -qq
-      - sudo apt-get install -y -qq yarn=1.2.1
+node_js: 8
 
 cache:
-      yarn: true
       directories:
             - node_modules
 
 notifications:
       email:
             recipients:
-                  - bstenm@yahoo.com
+                  - email@address.com
             on_success: change
             on_failure: change
+
+install:
+      - 'yarn add coveralls'
+
+script:
+      - jest --coverage --coverageReporters=text-lcov --detectOpenHandles --forceExit | coveralls
+      - yarn build
+
+# deploy:
+#       provider: heroku
+#       app:
+#             master: flatten-api-staging
+#             production: flatten-api-production
+#       api_key:
+#       secure: q/dnPLcdxYuRLpI7h96a6qd5ZlpsXD+5zFFPlcWhDxlJOpPIQruq/JcILrgnPlvESzLMznG1Khg/oqihmGVCs+i2WU6o9pM3M/hnSQkp2lTUaCPmOL+4uk246Z63lvw1G95HnFbjmJ9x7Iq9nyLTn9mQgnTdjlnPBM6XtQDKKF9Ef3ZwzFefR5qJcELNDLApdzP9TPU5U38C1s9ySo9oWYd1ntYd1uvZrAo/Rrv2Ohl7ozh8R64ElTM3FHkoA1siWiI90E0BtY652THvjIDuzcsIm1XqFyJLYCl+gB6thbC0VoLyiHV74tk46ygZ9JPoSLE2wQHx+sdTsMJADYG19r4d46laXQyOI1DR3VxwSxmfE0zUBcIJip6uWZJcXJmd+REbPd7LVS945hEmy90efgUy0JpfXkzPH6YMVmWKYD4C6YHv0dSmp5V6IA8dgzUp852VkJG4rmSxAK5rPF/9Q3/jEnlIkWVespKVEoR0iaIbXS/bqLWO2WBlNcbi8x1XUE5irKBy0bHKfLms+baE8LN6D6uhObu2crbHv7F3bS8JKcvwa+jAMazaalvQ6SZdKBMcJnNrUYrptDm90kgFRdGYn/kN0fEr978gSxZxpWBkk0Ckn++BKWbuhSs0DqOqq1PXgvTpt6gnMeSxeLlC4E62VVJ8Sj4B2CsEyPsAVcs=

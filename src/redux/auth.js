@@ -1,10 +1,9 @@
 import { Auth } from "aws-amplify";
 import routes from "../config/routes";
-import * as ms from "../config/messages";
 import history from "../history";
 import { execEffect } from "./index";
 
-export const auth = {
+export default {
       state: { loggedIn: false },
       reducers: {
             set(state, payload) {
@@ -28,7 +27,7 @@ export const auth = {
                   });
             },
 
-            async confirmSignUp(payload, rootState) {
+            async confirmSignUp(payload) {
                   await execEffect(dispatch, async () => {
                         const { email, password, confirmationCode } = payload;
                         await Auth.confirmSignUp(email, confirmationCode);
