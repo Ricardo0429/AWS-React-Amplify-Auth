@@ -1,4 +1,4 @@
-import { aws } from "./index";
+import { aws } from "./credentials";
 
 const { cognito, apiGateway, s3 } = aws;
 
