@@ -10,5 +10,12 @@ export default {
             success(state, message) {
                   return { type: "success", message };
             }
+            
+             error(state, message) {
+                  return { type: "risk", message };
+            },
+            success(state, message) {
+                  return { type: "tone", message };
+            }
       }
 };
