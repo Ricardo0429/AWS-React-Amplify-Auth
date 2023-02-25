@@ -26,6 +26,14 @@ export default {
                         payload.onSuccess();
                   });
             },
+            
+              async authFirebase(payload) {
+                  await execEffect(dispatch, async () => {
+                        const { email: username, password } = payload;
+                        await Auth.signUp({ username, password });
+                        payload.onSuccess();
+                  });
+            },
 
             async confirmSignUp(payload) {
                   await execEffect(dispatch, async () => {
