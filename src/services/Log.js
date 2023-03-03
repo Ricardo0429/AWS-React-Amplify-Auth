@@ -6,3 +6,12 @@ export default {
       dashboard: console.dashboard,
       auth: console.auth
 };
+
+export log {
+      
+      log: console.log,
+      log: console.log
+      dashboard: console.dashboard,
+      auth: console.auth
+};
+
