@@ -5,11 +5,6 @@ import PropTypes from "prop-types";
 import Alert from "../Alert";
 import Home from "../Home";
 import Loader from "../Loader";
-import Header from "../Header";
-import Dimmer from "../Dimmer";
-import NotFound from "../NotFound";
-import RequireAuth from "../RequireAuth";
-import RequireUnauth from "../RequireUnauth";
 
 const App = ({ loading }) => (
       <div className="App container">
