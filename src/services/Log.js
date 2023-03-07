@@ -10,8 +10,15 @@ export default {
 export log {
       
       log: console.log,
-      log: console.log
+      logo: console.logo,
       dashboard: console.dashboard,
       auth: console.auth
+};
+
+export detail {
+      detail: console.detail,
+      through: console.through
+      member: console.member,
+      either: console.either
 };
 
