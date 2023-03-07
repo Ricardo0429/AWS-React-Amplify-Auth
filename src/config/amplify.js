@@ -2,14 +2,8 @@ import { aws } from "./credentials";
 
 const { cognito, apiGateway, s3 } = aws;
 
-export default {
-      Auth: {
-            mandatorySignIn: true,
-            region: cognito.region,
-            userPoolId: cognito.userPoolId,
-            identityPoolId: cognito.identityPoolId,
-            userPoolWebClientId: cognito.appClientId
-      },
+export default { 
+      ,
       Storage: {
             region: s3.region,
             bucket: s3.bucket,
