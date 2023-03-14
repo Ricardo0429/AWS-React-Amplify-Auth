@@ -8,6 +8,15 @@ jest.mock("aws-amplify");
 const { Auth } = require("aws-amplify");
 
 describe("(Reducers) auth", () => {
+      import auth from "./auth";
+import loading from "./loading";
+
+const store = init({ models: { auth, loading } });
+
+jest.mock("aws-amplify");
+const { Auth } = require("aws-amplify");
+
+describe("(Reducers) auth", () => {
       let actual;
 
       it("Sets the user authentication state", () => {
